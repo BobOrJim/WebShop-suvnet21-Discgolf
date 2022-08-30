@@ -14,7 +14,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <>
       <h1>Frissbee-discogolf</h1>
     <AppBar> 
       <Container>
@@ -30,7 +30,7 @@ function App() {
         </Routes>
       </Container>
     </AppBar>
-    </div>
+    </>
   )
 }
 export default App;
