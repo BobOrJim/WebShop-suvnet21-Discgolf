@@ -1,36 +1,21 @@
-import { useState } from "react";
-import {Route, Routes} from 'react-router-dom';
-import Home from './pages/Home';
-import AdminPage from "./pages/AdminPage";
-import CheckoutPage from "./pages/CheckoutPage";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Layout";
+import AdminPage from "./pages/adminPage";
+import CheckoutPage from "./pages/checkoutPage";
 import DetailedProductPage from "./pages/DetailedProductPage";
-import ProductsPage from "./pages/ProductsPage";
-import { Container } from "@mui/material";
-import {AppBar} from "@mui/material";
-
-
+import Home from "./pages/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>Frissbee-discogolf</h1>
-    <AppBar> 
-      <Container>
-
-        <Routes>
-
-          <Route path="/" element={<Home />}/>
-          <Route path="/AdminPage" element={<AdminPage />}/>
-          <Route path="/CheckoutPage" element={<CheckoutPage />}/>
-          <Route path="/DetailedProductPage" element={<DetailedProductPage />}/>
-          <Route path="/ProductsPage" element={<ProductsPage />}/>
-      
-        </Routes>
-      </Container>
-    </AppBar>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="detailedproductpage" element={<DetailedProductPage />} />
+        <Route path="adminpage" element={<AdminPage />} />
+        <Route path="checkoutpage" element={<CheckoutPage />} />
+      </Route>
+      <Route path="*" element={<div>404 page does not exist</div>}></Route>
+    </Routes>
+  );
 }
 export default App;
