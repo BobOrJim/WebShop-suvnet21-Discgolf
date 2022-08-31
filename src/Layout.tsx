@@ -14,9 +14,6 @@ function Layout() {
         <NavLink style={linkStyle} to="checkoutpage">
           Checkout items
         </NavLink>
-        <NavLink style={linkStyle} to="detailedproductpage">
-          Product details
-        </NavLink>
       </header>
       <Outlet />
     </div>
