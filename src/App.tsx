@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import AdminPage from "./pages/adminPage";
 import CheckoutPage from "./pages/checkoutPage";
-import DetailedProductPage from "./pages/DetailedProductPage";
+import DetailedProductPage from "./pages/detailedProductPage";
 import Home from "./pages/Home";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="detailedproductpage" element={<DetailedProductPage />} />
+        <Route path=":discId" element={<DetailedProductPage />} />
         <Route path="adminpage" element={<AdminPage />} />
         <Route path="checkoutpage" element={<CheckoutPage />} />
       </Route>
