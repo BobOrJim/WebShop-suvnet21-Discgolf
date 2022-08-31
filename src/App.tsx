@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import AdminPage from "./pages/adminPage";
-import CheckoutPage from "./pages/checkoutPage";
-import DetailedProductPage from "./pages/detailedProductPage";
+import AdminPage from "./pages/AdminPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import DetailedProductPage from "./pages/DetailedProductPage";
 import Home from "./pages/Home";
 
 function App() {
