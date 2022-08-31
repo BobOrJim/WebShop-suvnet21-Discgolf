@@ -1,7 +1,7 @@
 //import { formatCurrency } from "../utilities/formatCurrency";
 import { FC, CSSProperties } from "react";
 import { NavLink } from "react-router-dom";
-import { Disc } from "./Disc";
+import { Disc } from "./disc";
 
 interface DiscCardProps {
   disc: Disc;

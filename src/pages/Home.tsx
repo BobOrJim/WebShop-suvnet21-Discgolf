@@ -1,6 +1,6 @@
 import { CSSProperties, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { seedData } from "../components/disc/Disc";
+import { seedData } from "../components/disc/disc";
 import { DiscCard } from "../components/disc/DiscCard";
 
 const Home = () => {
