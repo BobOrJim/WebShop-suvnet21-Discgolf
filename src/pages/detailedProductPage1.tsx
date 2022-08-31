@@ -1,6 +1,5 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { getDiscById } from "../components/disc/Disc";
+import { getDiscById } from "../components/disc/disc";
 
 const DetailedProductPage = () => {
   const params = useParams<{ discId: string }>();
