@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import { getDiscById } from "../components/disc/disc";
+import { useDiscContext } from "../DiscsContext";
 
 const DetailedProductPage = () => {
   const params = useParams<{ discId: string }>();
   const distId = params.discId || "";
+  const { getDiscById } = useDiscContext();
   const disc = getDiscById(distId);
 
   if (!disc) {
