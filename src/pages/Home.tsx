@@ -3,8 +3,10 @@ import { CSSProperties, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { seedData } from "../components/disc/disc";
 import { DiscCard } from "../components/disc/DiscCard";
+import { useDiscContext } from "../DiscsContext";
 
 const Home = () => {
+  const { getAllDiscs } = useDiscContext();
   return (
     <Grid2 container flexGrow={1} rowSpacing={4}  columnSpacing={{ xs:2 , md:2}}>
       {seedData.map((disc) => (
