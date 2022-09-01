@@ -1,5 +1,3 @@
-export { seedData };
-
 //interface
 export interface Disc {
   id: string;
@@ -17,7 +15,7 @@ export interface Disc {
 }
 
 //seedning
-const seedData: Disc[] = [
+export const seedData: Disc[] = [
   {
     id: "1",
     name: "Glory Grand Orbit First Run",
