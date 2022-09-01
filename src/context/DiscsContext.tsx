@@ -21,30 +21,29 @@ interface DiscsProviderProps {
   children: ReactNode;
 }
 
-type DiscsContext = {
+interface IDiscContext {
   getAllDiscs: () => Disc[];
   getDiscById: (id: string) => Disc;
   addDisc: (disc: Disc) => void;
   removeDisc: (id: string) => void;
   saveToRepo: () => void;
-};
-
-const discCartContext = createContext({} as DiscsContext);
-
-export function useDiscContext(): DiscsContext {
-  return useContext(discCartContext);
 }
 
-export function DiscContextProvider({ children }: DiscsProviderProps) {
+const DiscContext = createContext({} as IDiscContext);
+
+export const useDiscContext = (): IDiscContext => useContext(DiscContext);
+
+function DiscContextProvider({ children }: DiscsProviderProps) {
+  const [discs, setDiscs] = useState<Disc[]>(getDiscsFromLocalStorage());
+
   useEffect(() => {
     seedIfEmpty();
   }, []);
 
-  const [discs, setDiscs] = useState<Disc[]>(getDiscsFromLocalStorage());
-
   function getAllDiscs(): Disc[] {
     return discs;
   }
+
   function getDiscById(id: string): Disc {
     const disc = discs.find((d) => d.id === id);
     if (disc === undefined) {
@@ -52,22 +51,21 @@ export function DiscContextProvider({ children }: DiscsProviderProps) {
     }
     return disc;
   }
+
   function addDisc(disc: Disc) {
-    setDiscs((currItems) => {
-      return [...currItems, disc];
-    });
+    setDiscs((currItems) => [...currItems, disc]);
   }
+
   function removeDisc(id: string) {
-    setDiscs((currItems) => {
-      return currItems.filter((item) => item.id !== id);
-    });
+    setDiscs((currItems) => currItems.filter((item) => item.id !== id));
   }
+
   function saveToRepo() {
     saveDiscsToLocalStorage(discs);
   }
 
   return (
-    <discCartContext.Provider
+    <DiscContext.Provider
       value={{
         getAllDiscs,
         getDiscById,
@@ -77,6 +75,8 @@ export function DiscContextProvider({ children }: DiscsProviderProps) {
       }}
     >
       {children}
-    </discCartContext.Provider>
+    </DiscContext.Provider>
   );
 }
+
+export default DiscContextProvider;

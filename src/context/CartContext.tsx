@@ -1,47 +1,56 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Disc } from "../components/disc/disc";
 
-interface ContextValue {
-  cart: Disc[];
-  addToCart: (product: Disc) => void;
-  removeFromCart: (product: Disc) => void;
-}
-
-const CartContext = createContext<ContextValue>({
-  cart: [],
-  addToCart: () => {},
-  removeFromCart: () => {},
-  //add more functions later like removing all products from cart
-});
-
-interface Props {
+interface CartProviderProps {
   children: ReactNode;
 }
 
-function CartProvider({ children }: Props) {
+interface ICartContext {
+  // cart: Disc[];
+  getAllCartItems: () => Disc[];
+  addToCart: (product: Disc) => void;
+  removeFromCart: (id: string) => void;
+}
+
+const CartContext = createContext({} as ICartContext);
+//add more functions later like removing all products from cart
+
+/** Custom hook to consume the cart context */
+export const useCartContext = (): ICartContext => useContext(CartContext);
+
+function CartContextProvider({ children }: CartProviderProps) {
   const [cart, setCart] = useState<Disc[]>([]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  function getAllCartItems(): Disc[] {
+    return cart;
+  }
+
   const addToCart = (product: Disc) => {
-    setCart((prevState) => [...prevState, product]);
+    setCart((currItems) => [...currItems, product]);
   };
 
-  const removeFromCart = (item: Disc) => {
-    //BUG: currently removes all items from cart, no matter the type
-    setCart(cart.filter((item) => item.id !== item.id));
+  const removeFromCart = (id: string) => {
+    setCart((currItems) => currItems.filter((item) => item.id !== id));
+    //BUG: currently removes all items with the same id from cart, no matter the type
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ getAllCartItems, addToCart, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );
 }
 
-/** Custom hook to consume the cart context */
-export const useCart = () => useContext(CartContext);
-
-export default CartProvider;
+export default CartContextProvider;

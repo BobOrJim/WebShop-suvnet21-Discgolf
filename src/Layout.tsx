@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { useCart } from "./context/CartContext";
+import { useCartContext } from "./context/CartContext";
 
 function Layout() {
-  const { cart } = useCart();
+  const { getAllCartItems } = useCartContext();
 
   return (
     <div>
@@ -15,10 +15,9 @@ function Layout() {
           Admin
         </NavLink>
         <NavLink style={linkStyle} to="checkoutpage">
-          Checkout items
+          <span>My Cart</span>
+          <span>🛒{getAllCartItems().length}</span>
         </NavLink>
-        <span>My Cart</span>
-        <span>🛒{cart.length}</span>
       </header>
       <Outlet />
     </div>
