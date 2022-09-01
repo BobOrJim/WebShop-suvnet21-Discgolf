@@ -1,9 +1,17 @@
-import React from 'react'
+import { useCartContext } from "../context/CartContext";
 
 const CheckoutPage = () => {
-  return (
-    <div>checkoutPage</div>
-  )
-}
+  const { getAllCartItems } = useCartContext();
 
-export default CheckoutPage
+  return (
+    <div>
+      {getAllCartItems().map((disc) => (
+        <div>
+          <p>{disc.id}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default CheckoutPage;

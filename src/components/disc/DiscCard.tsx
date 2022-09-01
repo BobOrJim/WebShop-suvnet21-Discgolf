@@ -2,7 +2,7 @@
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { CSSProperties, FC } from "react";
 import { NavLink } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useCartContext } from "../../context/CartContext";
 import { Disc } from "./disc";
 
 interface DiscCardProps {
@@ -15,14 +15,15 @@ export const DiscCard: FC<DiscCardProps> = (
   //const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
   //const quantity = getItemQuantity(id);
 
-  const { addToCart } = useCart();
-  const { removeFromCart } = useCart();
+  const { addToCart, removeFromCart } = useCartContext();
 
   return (
     <div style={tmpDivStyle}>
       <div style={discNameDiv}> {props.disc.name}</div>
       <div style={discPriceDiv}>{props.disc.price} Kr</div>
       <div style={discImageDiv}>{SimpleMediaQuery(props)}</div>
+      <button onClick={() => addToCart(props.disc)}>+</button>
+      <button onClick={() => removeFromCart(props.disc.id)}>-</button>
       <NavLink to={"/detailedproductpage/" + props.disc.id.toString()}>
         SHOW DETAILS
       </NavLink>
