@@ -187,7 +187,3 @@ export const seedData: Disc[] = [
     type: "distance driver",
   },
 ];
-
-export function getDiscById(id: string) {
-  return seedData.find((i) => i.id === id);
-}
