@@ -3,9 +3,19 @@
 //övrigt program använder sedan enbart discContext
 //Framtida notering: Om ett api används, så skall context wrappa apiet och vara den enda som skickar requests
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { Disc } from "./components/disc/disc";
-import { saveDiscsToLocalStorage, getDiscsFromLocalStorage, seedIfEmpty } from "./data/discRepo";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { Disc } from "../components/disc/disc";
+import {
+  getDiscsFromLocalStorage,
+  saveDiscsToLocalStorage,
+  seedIfEmpty,
+} from "../data/discRepo";
 
 interface DiscsProviderProps {
   children: ReactNode;
@@ -32,7 +42,6 @@ export function DiscContextProvider({ children }: DiscsProviderProps) {
 
   const [discs, setDiscs] = useState<Disc[]>(getDiscsFromLocalStorage());
 
-  console.log("DiscContextProvider", discs);
   function getAllDiscs(): Disc[] {
     return discs;
   }

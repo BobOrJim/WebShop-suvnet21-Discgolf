@@ -1,15 +1,17 @@
 //import { formatCurrency } from "../utilities/formatCurrency";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { CSSProperties, FC } from "react";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { Disc } from "./disc";
-import Grid2 from '@mui/material/Unstable_Grid2'; 
 
 interface DiscCardProps {
   disc: Disc;
 }
 
-export const DiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Element => {
+export const DiscCard: FC<DiscCardProps> = (
+  props: DiscCardProps
+): JSX.Element => {
   //const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
   //const quantity = getItemQuantity(id);
 
@@ -17,19 +19,28 @@ export const DiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Element =
   const { removeFromCart } = useCart();
 
   return (
-
-        <div style={tmpDivStyle}>
-         <div style={discNameDiv}> {props.disc.name}</div>
-          <div style={discPriceDiv}>{props.disc.price} Kr</div>
-          <div style={discImageDiv}>
-          <img height="200px" width="200px" src={props.disc.imageUrl}/>
-          </div>
-          <NavLink to={props.disc.id.toString()}>
-          SHOW DETAILS
-          </NavLink>
-        </div>
+    <div style={tmpDivStyle}>
+      <div style={discNameDiv}> {props.disc.name}</div>
+      <div style={discPriceDiv}>{props.disc.price} Kr</div>
+      <div style={discImageDiv}>{SimpleMediaQuery(props)}</div>
+      <NavLink to={"/detailedproductpage/" + props.disc.id.toString()}>
+        SHOW DETAILS
+      </NavLink>
+    </div>
   );
 };
+
+export default function SimpleMediaQuery(props: any) {
+  let size = 200;
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    size = 100;
+  }
+  return (
+    <img height={size + "px"} width={size + "px"} src={props.disc.imageUrl} />
+  );
+}
 
 const tmpDivStyle: CSSProperties = {
   display: "grid",
