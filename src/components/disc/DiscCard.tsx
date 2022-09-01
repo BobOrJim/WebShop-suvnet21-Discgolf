@@ -13,24 +13,38 @@ export const DiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Element =
   //const quantity = getItemQuantity(id);
 
   return (
-    <Grid2 container spacing={2}>
-      <Grid2 xs={2}>
         <div style={tmpDivStyle}>
-          <p>{props.disc.name}</p>
-          <p>{props.disc.price}</p>
+         <div style={discNameDiv}> {props.disc.name}</div>
+          <div style={discPriceDiv}>{props.disc.price} Kr</div>
+          <div style={discImageDiv}>
           <img height="200px" width="200px" src={props.disc.imageUrl}/>
+          </div>
           <NavLink to={props.disc.id.toString()}>
-          <p>SHOW DETAILS</p>
+          SHOW DETAILS
           </NavLink>
         </div>
-      </Grid2>
-    </Grid2>
   );
 };
 
 const tmpDivStyle: CSSProperties = {
-  display: "flex",
+  display: "grid",
   border: "1px solid #CCC",
   borderRadius: "0.5rem",
-  margin: "0.5rem",
+  margin: "0",
+};
+
+const discNameDiv: CSSProperties = {
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  margin: "auto",
+};
+
+const discPriceDiv: CSSProperties = {
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  margin: "auto",
+};
+
+const discImageDiv: CSSProperties = {
+  margin: "auto",
 };
