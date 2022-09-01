@@ -1,6 +1,4 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { CSSProperties, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
 import { seedData } from "../components/disc/disc";
 import { DiscCard } from "../components/disc/DiscCard";
 import { useDiscContext } from "../DiscsContext";

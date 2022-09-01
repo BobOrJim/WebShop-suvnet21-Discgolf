@@ -1,6 +1,7 @@
 //import { formatCurrency } from "../utilities/formatCurrency";
-import { FC, CSSProperties } from "react";
+import { CSSProperties, FC } from "react";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 import { Disc } from "./disc";
 import Grid2 from '@mui/material/Unstable_Grid2'; 
 
@@ -12,7 +13,11 @@ export const DiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Element =
   //const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
   //const quantity = getItemQuantity(id);
 
+  const { addToCart } = useCart();
+  const { removeFromCart } = useCart();
+
   return (
+
         <div style={tmpDivStyle}>
          <div style={discNameDiv}> {props.disc.name}</div>
           <div style={discPriceDiv}>{props.disc.price} Kr</div>

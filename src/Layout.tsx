@@ -1,7 +1,10 @@
 import { CSSProperties } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useCart } from "./context/CartContext";
 
 function Layout() {
+  const { cart } = useCart();
+
   return (
     <div>
       <header style={rootStyle}>
@@ -14,6 +17,8 @@ function Layout() {
         <NavLink style={linkStyle} to="checkoutpage">
           Checkout items
         </NavLink>
+        <span>My Cart</span>
+        <span>🛒{cart.length}</span>
       </header>
       <Outlet />
     </div>
