@@ -14,6 +14,8 @@ export interface Disc {
   type: string;
 }
 
+export type DiscCreate = Omit<Disc, "id">;
+
 //seedning
 export const seedData: Disc[] = [
   {
