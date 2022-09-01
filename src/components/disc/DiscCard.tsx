@@ -2,6 +2,7 @@
 import { FC, CSSProperties } from "react";
 import { NavLink } from "react-router-dom";
 import { Disc } from "./disc";
+import Grid2 from '@mui/material/Unstable_Grid2'; 
 
 interface DiscCardProps {
   disc: Disc;
@@ -12,16 +13,18 @@ export const DiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Element =
   //const quantity = getItemQuantity(id);
 
   return (
-    <div style={tmpDivStyle}>
-      <p>{props.disc.name}</p>
-      <p>{props.disc.price}</p>
-      <p>{props.disc.imageUrl}</p>
-      <NavLink to={props.disc.id.toString()}>
-        <div>
+    <Grid2 container spacing={2}>
+      <Grid2 xs={2}>
+        <div style={tmpDivStyle}>
+          <p>{props.disc.name}</p>
+          <p>{props.disc.price}</p>
+          <img height="200px" width="200px" src={props.disc.imageUrl}/>
+          <NavLink to={props.disc.id.toString()}>
           <p>SHOW DETAILS</p>
+          </NavLink>
         </div>
-      </NavLink>
-    </div>
+      </Grid2>
+    </Grid2>
   );
 };
 
