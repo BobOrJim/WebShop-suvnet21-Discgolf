@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useDiscContext } from "../DiscsContext";
+import { useDiscContext } from "../context/DiscsContext";
 
 const DetailedProductPage = () => {
   const params = useParams<{ discId: string }>();
