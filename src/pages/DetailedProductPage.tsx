@@ -12,6 +12,7 @@ const DetailedProductPage = () => {
   }
   return (
     <div>
+      <p>DETAILED PAGE </p>
       <p>{disc.id}</p>
       <p>{disc.brand}</p>
       <p>{disc.color}</p>
