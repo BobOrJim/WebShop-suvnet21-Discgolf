@@ -6,7 +6,7 @@ const CheckoutPage = () => {
   return (
     <div>
       {getAllCartItems().map((disc) => (
-        <div>
+        <div key={disc.id}>
           <p>{disc.id}</p>
         </div>
       ))}

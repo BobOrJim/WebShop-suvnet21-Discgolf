@@ -7,6 +7,8 @@ const AdminPage = () => {
   const discs: Disc[] = getAllDiscs();
   //console.log(discs); //ok
 
+  //Formtextruta med MUI
+
   return (
     <>
       {discs.map((disc) => (
