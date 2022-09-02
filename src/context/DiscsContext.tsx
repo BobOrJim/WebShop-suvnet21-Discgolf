@@ -3,19 +3,10 @@
 //övrigt program använder sedan enbart discContext
 //Framtida notering: Om ett api används, så skall context wrappa apiet och vara den enda som skickar requests
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { Disc } from "../components/disc/disc";
-import {
-  getDiscsFromLocalStorage,
-  saveDiscsToLocalStorage,
-  seedIfEmpty,
-} from "../data/discRepo";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { Disc, DiscCreate } from "../components/disc/disc";
+import { getDiscsFromLocalStorage, saveDiscsToLocalStorage, seedIfEmpty } from "../data/discRepo";
+import { v4 as uuidv4 } from "uuid";
 
 interface DiscsProviderProps {
   children: ReactNode;
@@ -24,9 +15,10 @@ interface DiscsProviderProps {
 interface IDiscContext {
   getAllDiscs: () => Disc[];
   getDiscById: (id: string) => Disc;
-  addDisc: (disc: Disc) => void;
+  addDisc: (disc: DiscCreate) => void;
   removeDisc: (id: string) => void;
   saveToRepo: () => void;
+  replaceDisc: (disc: Disc) => void;
 }
 
 const DiscContext = createContext({} as IDiscContext);
@@ -52,8 +44,17 @@ function DiscContextProvider({ children }: DiscsProviderProps) {
     return disc;
   }
 
-  function addDisc(disc: Disc) {
-    setDiscs((currItems) => [...currItems, disc]);
+  function addDisc(disc: DiscCreate) {
+    const newDisc = {
+      id: uuidv4(),
+      ...disc,
+    };
+    setDiscs([...discs, newDisc]);
+  }
+
+  function replaceDisc(disc: Disc) {
+    const newDiscs = discs.map((d) => (d.id === disc.id ? disc : d));
+    setDiscs(newDiscs);
   }
 
   function removeDisc(id: string) {
@@ -72,6 +73,7 @@ function DiscContextProvider({ children }: DiscsProviderProps) {
         addDisc,
         removeDisc,
         saveToRepo,
+        replaceDisc,
       }}
     >
       {children}

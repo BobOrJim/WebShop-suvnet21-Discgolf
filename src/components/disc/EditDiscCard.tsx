@@ -1,4 +1,7 @@
+export {};
+
 //import { formatCurrency } from "../utilities/formatCurrency";
+/*
 import { FC, CSSProperties, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Disc } from "./disc";
@@ -43,3 +46,5 @@ export const EditDiscCard: FC<DiscCardProps> = (props: DiscCardProps): JSX.Eleme
     </form>
   );
 };
+
+*/
