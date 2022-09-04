@@ -1,13 +1,13 @@
-import { useCartContext } from "../context/CartContext";
+import { useProductContext } from "../context/ProductContext";
 
 const CheckoutPage = () => {
-  const { getAllCartItems } = useCartContext();
+  const { getAllProducts } = useProductContext();
 
   return (
     <div>
-      {getAllCartItems().map((disc) => (
-        <div>
-          <p>{disc.id}</p>
+      {getAllProducts().map((product) => (
+        <div key={product.id}>
+          <p>{product.id}</p>
         </div>
       ))}
     </div>

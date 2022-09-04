@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "name": "Glory Grand Orbit First Run",
+    "brand": "Latitude 64",
+    "speed": 7,
+    "glide": 5,
+    "turn": 0,
+    "fade": 3,
+    "weight": 176,
+    "color": "Blue",
+    "imageUrl": "https://discgolf.nu/images/zoom/l64_grand_orbit_glory_firstrun_blue.jpg",
+    "price": 269,
+    "type": "fairway driver"
+  },
+
+  {
+    "id": 2,
+    "name": "Culprit Lucid-X Chris Clemons Team Series",
+    "brand": "Dynamic Discs",
+    "speed": 4,
+    "glide": 2,
+    "turn": 0,
+    "fade": 3.5,
+    "weight": 175,
+    "color": "Orange",
+    "imageUrl": "https://discgolf.nu/images/normal/lucid-x-culprit-chris-clemons-team-series.jpg",
+    "price": 239,
+    "type": "fairway driver"
+  }
+]

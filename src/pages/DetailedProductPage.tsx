@@ -1,29 +1,29 @@
 import { useParams } from "react-router-dom";
-import { useDiscContext } from "../context/DiscsContext";
+import { useProductContext } from "../context/ProductContext";
 
 const DetailedProductPage = () => {
-  const params = useParams<{ discId: string }>();
-  const distId = params.discId || "";
-  const { getDiscById } = useDiscContext();
-  const disc = getDiscById(distId);
+  const params = useParams<{ productId: number }>();
+  const distId = params.productId || 0;
+  const { getProductById } = useProductContext();
+  const product = getProductById(distId);
 
-  if (!disc) {
-    return <p>Disc does not exist</p>;
+  if (!product) {
+    return <p>Product does not exist</p>;
   }
   return (
     <div>
-      <p>{disc.id}</p>
-      <p>{disc.brand}</p>
-      <p>{disc.color}</p>
-      <p>{disc.fade}</p>
-      <p>{disc.glide}</p>
-      <p>{disc.imageUrl}</p>
-      <p>{disc.name}</p>
-      <p>{disc.price}</p>
-      <p>{disc.speed}</p>
-      <p>{disc.turn}</p>
-      <p>{disc.type}</p>
-      <p>{disc.weight}</p>
+      <p>{product.id}</p>
+      <p>{product.brand}</p>
+      <p>{product.color}</p>
+      <p>{product.fade}</p>
+      <p>{product.glide}</p>
+      <p>{product.imageUrl}</p>
+      <p>{product.name}</p>
+      <p>{product.price}</p>
+      <p>{product.speed}</p>
+      <p>{product.turn}</p>
+      <p>{product.type}</p>
+      <p>{product.weight}</p>
     </div>
   );
 };
