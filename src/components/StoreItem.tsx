@@ -4,6 +4,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { CSSProperties } from "react";
 import { NavLink } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export type StoreItem = {
   id: number;
@@ -50,13 +51,12 @@ export function StoreItem({
   type,
 }: StoreItemProps) {
   const { getItemQuantity, addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
-
   const quantity = getItemQuantity(id);
 
   return (
     <div style={tmpDivStyle}>
       <div style={discNameDiv}> {name}</div>
-      <div style={discPriceDiv}>{price} Kr</div>
+      <div style={discPriceDiv}>{formatCurrency(price)}</div>
       <div>
         <img src={imageUrl} height="200px"></img>
       </div>

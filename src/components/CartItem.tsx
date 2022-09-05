@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useCartContext } from "../context/CartContext";
 import products from "../data/items.json";
+import { formatCurrency } from "../utils/formatCurrency";
 
 type CartItemProps = {
   id: number;
@@ -16,8 +17,9 @@ export function CartItem({ id, quantity }: CartItemProps) {
     <div>
       <div>
         {item.name} {quantity > 1 && <span> x{quantity}</span>}
-        {item.price}
+        {formatCurrency(item.price)}
       </div>
+      <div>{formatCurrency(item.price * quantity)}</div>
       <Button onClick={() => removeAllFromCart(item.id)}>remove </Button>
     </div>
   );
