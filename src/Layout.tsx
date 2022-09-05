@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
 
 function Layout() {
-  const { getAllCartItems } = useCartContext();
+  const { cartQuantity } = useCartContext();
 
   return (
     <div>
@@ -16,7 +16,7 @@ function Layout() {
         </NavLink>
         <NavLink style={linkStyle} to="checkoutpage">
           <span>My Cart</span>
-          <span>🛒{getAllCartItems().length}</span>
+          <span>🛒{cartQuantity}</span>
         </NavLink>
       </header>
       <Outlet />

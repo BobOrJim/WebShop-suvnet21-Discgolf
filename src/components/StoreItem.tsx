@@ -57,7 +57,9 @@ export function StoreItem({
     <div style={tmpDivStyle}>
       <div style={discNameDiv}> {name}</div>
       <div style={discPriceDiv}>{price} Kr</div>
-      <div style={discImageDiv}>{SimpleMediaQuery(imageUrl)}</div>
+      <div>
+        <img src={imageUrl} height="200px"></img>
+      </div>
       <Button onClick={() => addOneToCart(id)}>Add one to cart</Button>
       <Button onClick={() => removeOneFromCart(id)}>Remove one from cart</Button>
       <Button onClick={() => removeAllFromCart(id)}>Remove all</Button>
@@ -66,14 +68,14 @@ export function StoreItem({
   );
 }
 
-export default function SimpleMediaQuery(props: any) {
+export default function SimpleMediaQuery(props: StoreItemProps) {
   let size = 200;
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
     size = 100;
   }
-  return <img height={size + "px"} width={size + "px"} src={props.disc.imageUrl} />;
+  return <img height={size + "px"} width={size + "px"} src={props.imageUrl} />;
 }
 
 const tmpDivStyle: CSSProperties = {
