@@ -23,6 +23,7 @@ interface IProductContext {
   addProduct: (product: StoreItem) => void;
   removeProduct: (id: number) => void;
   saveToRepo: () => void;
+  replaceProduct: (product: StoreItem) => void;
 }
 
 const ProductContext = createContext({} as IProductContext);
@@ -68,6 +69,7 @@ function ProductContextProvider({ children }: ProductProviderProps) {
         addProduct,
         removeProduct,
         saveToRepo,
+        replaceProduct,
       }}
     >
       {children}

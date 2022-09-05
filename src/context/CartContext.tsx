@@ -10,6 +10,8 @@ type CartItem = {
 };
 
 type CartContext = {
+  openCart: () => void;
+  closeCart: () => void;
   getItemQuantity: (id: number) => number;
   addOneToCart: (id: number) => void;
   removeOneFromCart: (id: number) => void;
@@ -19,7 +21,6 @@ type CartContext = {
 };
 
 const CartContext = createContext({} as CartContext);
-//add more functions later like removing all products from cart
 
 /** Custom hook to consume the cart context */
 export function useCartContext() {
@@ -31,8 +32,11 @@ export function CartContextProvider({ children }: CartProviderProps) {
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(cartItems));
   }, [cartItems]);
-
+  const [isOpen, setIsOpen] = useState(false);
   const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
+
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
 
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -80,6 +84,8 @@ export function CartContextProvider({ children }: CartProviderProps) {
   return (
     <CartContext.Provider
       value={{
+        openCart,
+        closeCart,
         getItemQuantity,
         addOneToCart,
         removeOneFromCart,

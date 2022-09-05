@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
 
 const DetailedProductPage = () => {
-  const params = useParams<{ productId: number }>();
-  const distId = params.productId || 0;
+  const params = useParams<{ productId: string }>();
+  const distId = params.productId || "";
   const { getProductById } = useProductContext();
-  const product = getProductById(distId);
+  const product = getProductById(Number(distId));
 
   if (!product) {
     return <p>Product does not exist</p>;
