@@ -100,7 +100,7 @@
   {
     "id": "J7Hbr",
     "name": "P1 - Pro D-line",
-    "brand": "Discmaina",
+    "brand": "Discmania",
     "speed": 2,
     "glide": 3,
     "turn": 0,
@@ -109,7 +109,7 @@
     "color": "White",
     "imageUrl": "https://discsport.se/img/disc/discmania/d-line-flex2-p1.webp",
     "price": 129,
-    "type": "Putter"
+    "type": "putter"
   },
   {
     "id": "oPEqO",
