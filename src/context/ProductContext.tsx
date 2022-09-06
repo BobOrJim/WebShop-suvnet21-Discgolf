@@ -5,12 +5,8 @@
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Product, ProductCreate } from "../components/product/Product";
-import {
-  getProductsFromLocalStorage,
-  saveProductsToLocalStorage,
-  seedIfEmpty,
-} from "../data/productRepo";
+import { Product, ProductCreate } from "../components/product/product";
+import { getProductsFromLocalStorage, saveProductsToLocalStorage, seedIfEmpty } from "../data/productRepo";
 interface ProductProviderProps {
   children: ReactNode;
 }
