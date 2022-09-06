@@ -1,6 +1,6 @@
-import { Product } from "../components/product/product";
-import { useProductContext } from "../context/ProductContext";
-import { Button, TableFooter, TableSortLabel } from "@mui/material";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
+import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
+import { Button, IconButton, TableFooter, TableSortLabel } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,20 +10,10 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-
-import { Button, IconButton, Pagination, TableFooter, TableSortLabel } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import TablePagination from "@mui/material/TablePagination";
-import { PhotoCamera, DeleteOutlined, HomeMiniRounded } from "@mui/icons-material";
-import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
-import EditSharpIcon from "@mui/icons-material/EditSharp";
+import { Product } from "../components/product/product";
+import { useProductContext } from "../context/ProductContext";
 //Sök här efter goa ikoner https://mui.com/material-ui/material-icons/
-
-
-
-
-
-
 
 const columnOrderDictionary: { [columnName: string]: boolean } = {};
 columnOrderDictionary["id"] = false;
@@ -64,7 +54,11 @@ const AdminPage = () => {
     console.log(rowsPerPage + " " + typeof rowsPerPage);
   };
 
-  function compareTwoProductsUsingTProp(a: Product, b: Product, orderBy: keyof Product) {
+  function compareTwoProductsUsingTProp(
+    a: Product,
+    b: Product,
+    orderBy: keyof Product
+  ) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
     }
@@ -80,7 +74,9 @@ const AdminPage = () => {
       compareTwoProductsUsingTProp(product1, product2, property)
     );
     columnOrderDictionary[columnName] = !columnOrderDictionary[columnName];
-    setRowData(columnOrderDictionary[columnName] === true ? sorted : sorted.reverse());
+    setRowData(
+      columnOrderDictionary[columnName] === true ? sorted : sorted.reverse()
+    );
   }
 
   return (
@@ -102,7 +98,9 @@ const AdminPage = () => {
               <TableCell align="center" onClick={() => handleSortClick("id")}>
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["id"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["id"] === true ? "asc" : "desc"
+                  }
                 >
                   Id&nbsp;
                 </TableSortLabel>
@@ -111,34 +109,51 @@ const AdminPage = () => {
               <TableCell align="center" onClick={() => handleSortClick("name")}>
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["name"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["name"] === true ? "asc" : "desc"
+                  }
                 >
                   Name&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("brand")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("brand")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["brand"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["brand"] === true ? "asc" : "desc"
+                  }
                 >
                   Brand&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("speed")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("speed")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["speed"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["speed"] === true ? "asc" : "desc"
+                  }
                 >
                   Speed&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("glide")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("glide")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["glide"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["glide"] === true ? "asc" : "desc"
+                  }
                 >
                   Glide&nbsp;
                 </TableSortLabel>
@@ -147,7 +162,9 @@ const AdminPage = () => {
               <TableCell align="center" onClick={() => handleSortClick("turn")}>
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["turn"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["turn"] === true ? "asc" : "desc"
+                  }
                 >
                   Turn&nbsp;
                 </TableSortLabel>
@@ -156,34 +173,51 @@ const AdminPage = () => {
               <TableCell align="center" onClick={() => handleSortClick("fade")}>
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["fade"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["fade"] === true ? "asc" : "desc"
+                  }
                 >
                   Fade&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("weight")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("weight")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["weight"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["weight"] === true ? "asc" : "desc"
+                  }
                 >
                   Weight&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("color")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("color")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["color"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["color"] === true ? "asc" : "desc"
+                  }
                 >
                   Color&nbsp;
                 </TableSortLabel>
               </TableCell>
 
-              <TableCell align="center" onClick={() => handleSortClick("price")}>
+              <TableCell
+                align="center"
+                onClick={() => handleSortClick("price")}
+              >
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["price"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["price"] === true ? "asc" : "desc"
+                  }
                 >
                   Price&nbsp;
                 </TableSortLabel>
@@ -191,7 +225,9 @@ const AdminPage = () => {
               <TableCell align="center" onClick={() => handleSortClick("type")}>
                 <TableSortLabel
                   active={true}
-                  direction={columnOrderDictionary["type"] === true ? "asc" : "desc"}
+                  direction={
+                    columnOrderDictionary["type"] === true ? "asc" : "desc"
+                  }
                 >
                   Type&nbsp;
                 </TableSortLabel>
@@ -201,7 +237,13 @@ const AdminPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0 ? rowData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : rowData).map((product) => (
+            {(rowsPerPage > 0
+              ? rowData.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : rowData
+            ).map((product) => (
               <TableRow key={product.id}>
                 <TableCell align="center" component="th" scope="row">
                   {product.id}

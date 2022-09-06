@@ -34,7 +34,12 @@ export function ProductCard({
   price,
   type,
 }: ProductProps) {
-  const { getItemQuantity, addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
+  const {
+    getItemQuantity,
+    addOneToCart,
+    removeOneFromCart,
+    removeAllFromCart,
+  } = useCartContext();
   const quantity = getItemQuantity(id);
 
   return (
@@ -45,9 +50,14 @@ export function ProductCard({
         <img src={imageUrl} height="200px"></img>
       </div>
       <Button onClick={() => addOneToCart(id)}>Add one to cart</Button>
-      <Button onClick={() => removeOneFromCart(id)}>Remove one from cart</Button>
+      <Button onClick={() => removeOneFromCart(id)}>
+        Remove one from cart
+      </Button>
       <Button onClick={() => removeAllFromCart(id)}>Remove all</Button>
-      <NavLink to={"/detailedproductpage/" + id.toString()} style={detailsStyle}>
+      <NavLink
+        to={"/detailedproductpage/" + id.toString()}
+        style={detailsStyle}
+      >
         More Details
       </NavLink>
     </div>
