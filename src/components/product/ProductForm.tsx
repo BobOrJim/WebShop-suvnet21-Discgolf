@@ -3,8 +3,9 @@ import { FC } from "react";
 import * as Yup from "yup";
 import { Product, ProductCreate } from "./product";
 import { useProductContext } from "../../context/ProductContext";
-import { Button, Container, FormControl, Input, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormControl, Input, TextField, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
@@ -28,6 +29,7 @@ interface ProductCardProps {
 
 export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.Element => {
   const { replaceProduct, addProduct } = useProductContext();
+  const navigate = useNavigate();
   const formik = useFormik<ProductCreate>({
     initialValues: props.product || {
       name: "",
@@ -45,15 +47,18 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
     validateOnChange: true,
     validationSchema: ProductSchema,
     onSubmit: (values: ProductCreate) => {
-      if (props.product) {
+      if (props.product.id !== undefined) {
+        console.log("replace product");
         const editedProduct: Product = {
           id: props.product.id,
           ...values,
         };
         replaceProduct(editedProduct);
       } else {
+        console.log("add product");
         addProduct(values);
       }
+      navigate("/adminpage");
     },
   });
 
@@ -106,9 +111,14 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
           <TextField margin="dense" id="type" name="type" label="Type" value={formik.values.type} onChange={formik.handleChange} error={Boolean(formik.errors.type)} helperText={formik.errors.type} />
         </FormControl>
 
-        <Button variant="contained" color="primary" type="submit">
-          Save
-        </Button>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button sx={{ mx: "auto", width: 200, margin: 2 }} variant="contained" color="secondary" onClick={() => navigate("/adminpage")}>
+            Cancel
+          </Button>
+          <Button sx={{ mx: "auto", width: 200, margin: 2 }} variant="contained" color="primary" type="submit">
+            Save
+          </Button>
+        </Box>
       </form>
     </Container>
   );

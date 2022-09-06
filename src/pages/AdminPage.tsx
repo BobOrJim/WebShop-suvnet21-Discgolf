@@ -8,9 +8,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import { Button, Pagination, TableFooter, TableSortLabel } from "@mui/material";
+import { Button, IconButton, Pagination, TableFooter, TableSortLabel } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import TablePagination from "@mui/material/TablePagination";
+import { PhotoCamera, DeleteOutlined, HomeMiniRounded } from "@mui/icons-material";
+import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
+//Sök här efter goa ikoner https://mui.com/material-ui/material-icons/
+//npm install @mui/icons-material
 
 const columnOrderDictionary: { [columnName: string]: boolean } = {};
 columnOrderDictionary["id"] = false;
@@ -40,16 +45,10 @@ const AdminPage = () => {
   //Tricket att få denna att fungera, är att från docsen lista ut att copy/pasta funktionens typ, istället för metodsignaturens typ.
   const handleChangeRowsPerPage: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (event) => {
     if (event.target.value) {
-      //console.log(event.target.value + " " + typeof event.target.value);
-      const rowsPerPage = parseInt(event.target.value, 10);
-      //console.log(rowsPerPage + " " + typeof rowsPerPage);
-      setRowsPerPage(rowsPerPage);
-      //setRowsPerPage(parseInt(event.target.value, 10));
-      //setPage(0);
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
     }
-    //setRowsPerPage(parseInt(event.currentTarget.value, 10));
-    //console.log(rowsPerPage + " " + typeof rowsPerPage);
-    setPage(0);
+    console.log(rowsPerPage + " " + typeof rowsPerPage);
   };
 
   function compareTwoProductsUsingTProp(a: Product, b: Product, orderBy: keyof Product) {
@@ -76,8 +75,7 @@ const AdminPage = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          navigate(`/addpage`);
-          console.log("Add");
+          navigate(`/editpage/`);
         }}
       >
         ADD NEW
@@ -150,10 +148,12 @@ const AdminPage = () => {
                   Type&nbsp;
                 </TableSortLabel>
               </TableCell>
+
+              <TableCell align="center">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rowData.map((product) => (
+            {(rowsPerPage > 0 ? rowData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : rowData).map((product) => (
               <TableRow key={product.id}>
                 <TableCell align="center" component="th" scope="row">
                   {product.id}
@@ -168,29 +168,27 @@ const AdminPage = () => {
                 <TableCell align="center">{product.color}</TableCell>
                 <TableCell align="center">{product.price}</TableCell>
                 <TableCell align="center">{product.type}</TableCell>
+
                 <TableCell align="center">
-                  <Button
-                    variant="contained"
+                  <IconButton
+                    color="primary"
+                    size="large"
+                    onClick={() => {
+                      navigate(`/editpage/${product.id}`);
+                    }}
+                  >
+                    <EditSharpIcon />
+                  </IconButton>
+                  <IconButton
                     color="error"
+                    size="large"
                     onClick={() => {
                       removeProduct(product.id);
                       setRowData(rowData.filter((d) => d.id !== product.id));
                     }}
                   >
-                    Delete
-                  </Button>
-                </TableCell>
-                <TableCell align="center">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      navigate(`/editpage/${product.id}`);
-                      console.log("Edit");
-                    }}
-                  >
-                    Edit
-                  </Button>
+                    <HighlightOffSharpIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
@@ -206,7 +204,7 @@ const AdminPage = () => {
                 rowsPerPageOptions={[5, 10, 25]}
                 labelRowsPerPage={<span>Rows:</span>}
                 labelDisplayedRows={({ page }) => {
-                  return `Page: ${page}`;
+                  return `Page: ${page + 1}`;
                 }}
                 backIconButtonProps={{
                   color: "secondary",
@@ -219,9 +217,6 @@ const AdminPage = () => {
                 }}
                 showFirstButton={true}
                 showLastButton={true}
-                //ActionsComponent={TablePaginationActions}
-                //component={Box}
-                //sx and classes prop discussed in styling section
               />
             </TableRow>
           </TableFooter>
@@ -232,13 +227,3 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
-
-/*
-
-
-
-
-      
-      
-
-          */
