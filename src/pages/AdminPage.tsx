@@ -52,7 +52,7 @@ const AdminPage = () => {
     setPage(0);
   };
 
-  function compareTwoDiscUsingTProp(a: Product, b: Product, orderBy: keyof Product) {
+  function compareTwoProductsUsingTProp(a: Product, b: Product, orderBy: keyof Product) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
     }
@@ -64,7 +64,7 @@ const AdminPage = () => {
 
   function handleSortClick(columnName: string) {
     const property = columnName as keyof Product; //Inte optimal felhantering här. Stoppar in i backloggen.
-    const sorted = [...rowData].sort((disc1, disc2) => compareTwoDiscUsingTProp(disc1, disc2, property));
+    const sorted = [...rowData].sort((product1, product2) => compareTwoProductsUsingTProp(product1, product2, property));
     columnOrderDictionary[columnName] = !columnOrderDictionary[columnName];
     setRowData(columnOrderDictionary[columnName] === true ? sorted : sorted.reverse());
   }
