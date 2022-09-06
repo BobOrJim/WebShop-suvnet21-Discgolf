@@ -10,7 +10,6 @@ const Edit = () => {
 
   return (
     <>
-      <p>EDIT PAGE </p>
       <ProductForm product={product} />
     </>
   );

@@ -1,4 +1,4 @@
-import { Product } from "../components/product/Product";
+import { Product } from "../components/product/product";
 import seedData from "./items.json";
 
 //saveProductsToLocalStorage
@@ -19,8 +19,6 @@ export const getProductsFromLocalStorage = (): Product[] => {
 export const seedIfEmpty = () => {
   const products: Product[] = getProductsFromLocalStorage();
   if (products.length === 0) {
-    const test: Product[] = seedData;
-    console.log(test);
     saveProductsToLocalStorage(seedData);
   }
 };

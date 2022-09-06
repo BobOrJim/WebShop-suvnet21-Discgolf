@@ -56,7 +56,6 @@ export function CartContextProvider({ children }: CartProviderProps) {
         });
       }
     });
-    console.log(setCartItems.length);
   }
 
   function removeOneFromCart(id: string) {

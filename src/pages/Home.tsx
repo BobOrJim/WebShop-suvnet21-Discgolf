@@ -4,7 +4,6 @@ import { useProductContext } from "../context/ProductContext";
 
 const Home = () => {
   const { getAllProducts } = useProductContext();
-  console.log(getAllProducts());
   return (
     <Grid2 container flexGrow={1} rowSpacing={4} columnSpacing={{ xs: 2, md: 2 }}>
       {getAllProducts().map((item) => (
