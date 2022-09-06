@@ -46,11 +46,11 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
     validationSchema: ProductSchema,
     onSubmit: (values: ProductCreate) => {
       if (props.product) {
-        const editedDisc: Product = {
+        const editedProduct: Product = {
           id: props.product.id,
           ...values,
         };
-        replaceProduct(editedDisc);
+        replaceProduct(editedProduct);
       } else {
         addProduct(values);
       }
