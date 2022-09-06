@@ -19,8 +19,6 @@ export const getProductsFromLocalStorage = (): Product[] => {
 export const seedIfEmpty = () => {
   const products: Product[] = getProductsFromLocalStorage();
   if (products.length === 0) {
-    const test: Product[] = seedData;
-    console.log(test);
     saveProductsToLocalStorage(seedData);
   }
 };
