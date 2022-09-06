@@ -5,23 +5,27 @@ import CheckoutPage from "./pages/CheckoutPage";
 import DetailedProductPage from "./pages/DetailedProductPage";
 import EditPage from "./pages/EditPage";
 import Home from "./pages/HomePage";
+import { ThemeProvider } from "@mui/system";
+import themeLight from "./styles/styles";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="detailedproductpage" element={<DetailedProductPage />}>
-          <Route path=":productId" element={<DetailedProductPage />} />
+    <ThemeProvider theme={themeLight}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="detailedproductpage" element={<DetailedProductPage />}>
+            <Route path=":productId" element={<DetailedProductPage />} />
+          </Route>
+          <Route path="adminpage" element={<AdminPage />} />
+          <Route path="checkoutpage" element={<CheckoutPage />} />
         </Route>
-        <Route path="adminpage" element={<AdminPage />} />
-        <Route path="checkoutpage" element={<CheckoutPage />} />
-      </Route>
-      <Route path="editpage" element={<EditPage />}>
-        <Route path=":productId" element={<EditPage />} />
-      </Route>
-      <Route path="*" element={<div>404 page does not exist</div>}></Route>
-    </Routes>
+        <Route path="editpage" element={<EditPage />}>
+          <Route path=":productId" element={<EditPage />} />
+        </Route>
+        <Route path="*" element={<div>404 page does not exist</div>}></Route>
+      </Routes>
+    </ThemeProvider>
   );
 }
 
