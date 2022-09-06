@@ -1,21 +1,17 @@
-import Grid2 from "@mui/material/Unstable_Grid2";
-import { DiscCard } from "../components/disc/DiscCard";
-import { useDiscContext } from "../context/DiscsContext";
-import { DiscForm } from "../components/disc/DiscForm";
-import { Disc } from "../components/disc/disc";
 import { useParams } from "react-router-dom";
+import { ProductForm } from "../components/product/ProductForm";
+import { useProductContext } from "../context/ProductContext";
 
 const Edit = () => {
-  const { getDiscById } = useDiscContext();
+  const { getProductById } = useProductContext();
 
-  const params = useParams<{ discId: string }>();
-  const distId = params.discId || "";
-  const disc = getDiscById(distId);
+  const params = useParams<{ productId: string }>();
+  const product = getProductById(params.productId || "");
 
   return (
     <>
       <p>EDIT PAGE </p>
-      <DiscForm disc={disc} />
+      <ProductForm product={product} />
     </>
   );
 };

@@ -1,56 +1,100 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { Disc } from "../components/disc/disc";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 interface CartProviderProps {
   children: ReactNode;
 }
 
-interface ICartContext {
-  // cart: Disc[];
-  getAllCartItems: () => Disc[];
-  addToCart: (product: Disc) => void;
-  removeFromCart: (id: string) => void;
-}
+type CartItem = {
+  id: string;
+  quantity: number;
+};
 
-const CartContext = createContext({} as ICartContext);
-//add more functions later like removing all products from cart
+type CartContext = {
+  openCart: () => void;
+  closeCart: () => void;
+  getItemQuantity: (id: string) => void;
+  addOneToCart: (id: string) => void;
+  removeOneFromCart: (id: string) => void;
+  removeAllFromCart: (id: string) => void;
+  cartQuantity: number;
+  cartItems: CartItem[];
+};
+
+const CartContext = createContext({} as CartContext);
 
 /** Custom hook to consume the cart context */
-export const useCartContext = (): ICartContext => useContext(CartContext);
+export function useCartContext() {
+  return useContext(CartContext);
+}
 
-function CartContextProvider({ children }: CartProviderProps) {
-  const [cart, setCart] = useState<Disc[]>([]);
-
+export function CartContextProvider({ children }: CartProviderProps) {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem("products", JSON.stringify(cartItems));
+  }, [cartItems]);
+  const [isOpen, setIsOpen] = useState(false);
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
-  function getAllCartItems(): Disc[] {
-    return cart;
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
+
+  function getItemQuantity(id: string) {
+    return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
 
-  const addToCart = (product: Disc) => {
-    setCart((currItems) => [...currItems, product]);
-  };
+  function addOneToCart(id: string) {
+    setCartItems((currItems) => {
+      if (currItems.find((item) => item.id === id) == null) {
+        return [...currItems, { id, quantity: 1 }];
+      } else {
+        return currItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+    console.log(setCartItems.length);
+  }
 
-  const removeFromCart = (id: string) => {
-    setCart((currItems) => currItems.filter((item) => item.id !== id));
-    //BUG: currently removes all items with the same id from cart, no matter the type
+  function removeOneFromCart(id: string) {
+    setCartItems((currItems) => {
+      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+        return currItems.filter((item) => item.id !== id);
+      } else {
+        return currItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity - 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+  }
+
+  const removeAllFromCart = (id: string) => {
+    setCartItems((currItems) => {
+      return currItems.filter((item) => item.id !== id);
+    });
   };
 
   return (
     <CartContext.Provider
-      value={{ getAllCartItems, addToCart, removeFromCart }}
+      value={{
+        openCart,
+        closeCart,
+        getItemQuantity,
+        addOneToCart,
+        removeOneFromCart,
+        removeAllFromCart,
+        cartItems,
+        cartQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 }
-
-export default CartContextProvider;

@@ -1,15 +1,15 @@
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Disc } from "../components/disc/disc";
-import { DiscCard } from "../components/disc/DiscCard";
-import { useDiscContext } from "../context/DiscsContext";
+import ProductCard from "../components/product/ProductCard";
+import { useProductContext } from "../context/ProductContext";
 
 const Home = () => {
-  const { getAllDiscs } = useDiscContext();
+  const { getAllProducts } = useProductContext();
+  console.log(getAllProducts());
   return (
     <Grid2 container flexGrow={1} rowSpacing={4} columnSpacing={{ xs: 2, md: 2 }}>
-      {getAllDiscs().map((disc: Disc) => (
-        <Grid2 key={disc.id} xs={4} md={4} lg={4}>
-          <DiscCard disc={disc} />
+      {getAllProducts().map((item) => (
+        <Grid2 key={item.id} xs={4} md={4} lg={4}>
+          <ProductCard {...item} />
         </Grid2>
       ))}
     </Grid2>
