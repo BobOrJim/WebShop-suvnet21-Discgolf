@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "qv4qZ",
     "name": "Glory Grand Orbit First Run",
     "brand": "Latitude 64",
     "speed": 7,
@@ -14,7 +14,7 @@
     "type": "fairway driver"
   },
   {
-    "id": "2",
+    "id": "hXp3P",
     "name": "Culprit Lucid-X Chris Clemons Team Series",
     "brand": "Dynamic Discs",
     "speed": 4,
@@ -28,7 +28,7 @@
     "type": "fairway driver"
   },
   {
-    "id": "3",
+    "id": "K69hy",
     "name": "Flow Opto-X Chameleon Clint Calvin",
     "brand": "Latitude 64",
     "speed": 11,
@@ -42,7 +42,7 @@
     "type": "fairway driver"
   },
   {
-    "id": "4",
+    "id": "22R5a",
     "name": "Rive Grand Orbit Linus Carlsson",
     "brand": "Latitude 64",
     "speed": 13,
@@ -56,7 +56,7 @@
     "type": "distance driver"
   },
   {
-    "id": "5",
+    "id": "5OOz5B",
     "name": "Grym K1 X-Out",
     "brand": "Kastaplast",
     "speed": 13,
@@ -70,7 +70,7 @@
     "type": "distance driver"
   },
   {
-    "id": "6",
+    "id": "Hhc21",
     "name": "Guld",
     "brand": "Kastaplast",
     "speed": 13,
@@ -84,7 +84,7 @@
     "type": "distance driver"
   },
   {
-    "id": "7",
+    "id": "n0a0M",
     "name": "Buzzz",
     "brand": "Discraft",
     "speed": 5,
@@ -98,9 +98,9 @@
     "type": "midrange"
   },
   {
-    "id": "8",
+    "id": "J7Hbr",
     "name": "P1 - Pro D-line",
-    "brand": "Discmaina",
+    "brand": "Discmania",
     "speed": 2,
     "glide": 3,
     "turn": 0,
@@ -109,10 +109,10 @@
     "color": "White",
     "imageUrl": "https://discsport.se/img/disc/discmania/d-line-flex2-p1.webp",
     "price": 129,
-    "type": "Putter"
+    "type": "putter"
   },
   {
-    "id": "9",
+    "id": "oPEqO",
     "name": "Butter",
     "brand": "Clash",
     "speed": 2,
@@ -126,7 +126,7 @@
     "type": "putter"
   },
   {
-    "id": "10",
+    "id": "E5U-h",
     "name": "Fuse",
     "brand": "Latitude 64",
     "speed": 5,
@@ -140,7 +140,7 @@
     "type": "midrange"
   },
   {
-    "id": "11",
+    "id": "DNolF",
     "name": "Berg",
     "brand": "Kastaplast",
     "speed": 1,
@@ -154,7 +154,7 @@
     "type": "putter"
   },
   {
-    "id": "12",
+    "id": "3jcEL",
     "name": "Mentor Active Premium",
     "brand": "Discmania",
     "speed": 11,

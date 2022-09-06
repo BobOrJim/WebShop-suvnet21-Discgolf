@@ -1,4 +1,4 @@
-import { Product } from "../components/product/product";
+import { Product } from "../components/product/Product";
 import seedData from "./items.json";
 
 //saveProductsToLocalStorage

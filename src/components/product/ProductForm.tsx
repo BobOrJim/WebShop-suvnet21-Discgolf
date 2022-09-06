@@ -1,11 +1,14 @@
+import { Button, Container, FormControl, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { FC } from "react";
 import * as Yup from "yup";
-import { Product, ProductCreate } from "./product";
 import { useProductContext } from "../../context/ProductContext";
+import { Product, ProductCreate } from "./product";
 import { Box, Button, Container, FormControl, Input, TextField, Typography } from "@mui/material";
-import { styled } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+
+
+
 
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
@@ -68,47 +71,146 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
         <input type="hidden" name="id" value={props.product ? props.product.id : ""} />
 
         <FormControl>
-          <TextField margin="dense" id="name" name="name" label="Name" value={formik.values.name} onChange={formik.handleChange} error={Boolean(formik.errors.name)} helperText={formik.errors.name} />
+          <TextField
+            margin="dense"
+            id="name"
+            name="name"
+            label="Name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.name)}
+            helperText={formik.errors.name}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="brand" name="brand" label="Brand" value={formik.values.brand} onChange={formik.handleChange} error={Boolean(formik.errors.brand)} helperText={formik.errors.brand} />
+          <TextField
+            margin="dense"
+            id="brand"
+            name="brand"
+            label="Brand"
+            value={formik.values.brand}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.brand)}
+            helperText={formik.errors.brand}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="speed" name="speed" label="Speed" value={formik.values.speed} onChange={formik.handleChange} error={Boolean(formik.errors.speed)} helperText={formik.errors.speed} />
+          <TextField
+            margin="dense"
+            id="speed"
+            name="speed"
+            label="Speed"
+            value={formik.values.speed}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.speed)}
+            helperText={formik.errors.speed}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="glide" name="glide" label="Glide" value={formik.values.glide} onChange={formik.handleChange} error={Boolean(formik.errors.glide)} helperText={formik.errors.glide} />
+          <TextField
+            margin="dense"
+            id="glide"
+            name="glide"
+            label="Glide"
+            value={formik.values.glide}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.glide)}
+            helperText={formik.errors.glide}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="turn" name="turn" label="Turn" value={formik.values.turn} onChange={formik.handleChange} error={Boolean(formik.errors.turn)} helperText={formik.errors.turn} />
+          <TextField
+            margin="dense"
+            id="turn"
+            name="turn"
+            label="Turn"
+            value={formik.values.turn}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.turn)}
+            helperText={formik.errors.turn}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="fade" name="fade" label="Fade" value={formik.values.fade} onChange={formik.handleChange} error={Boolean(formik.errors.fade)} helperText={formik.errors.fade} />
+          <TextField
+            margin="dense"
+            id="fade"
+            name="fade"
+            label="Fade"
+            value={formik.values.fade}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.fade)}
+            helperText={formik.errors.fade}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="weight" name="weight" label="Weight" value={formik.values.weight} onChange={formik.handleChange} error={Boolean(formik.errors.weight)} helperText={formik.errors.weight} />
+          <TextField
+            margin="dense"
+            id="weight"
+            name="weight"
+            label="Weight"
+            value={formik.values.weight}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.weight)}
+            helperText={formik.errors.weight}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="color" name="color" label="Color" value={formik.values.color} onChange={formik.handleChange} error={Boolean(formik.errors.color)} helperText={formik.errors.color} />
+          <TextField
+            margin="dense"
+            id="color"
+            name="color"
+            label="Color"
+            value={formik.values.color}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.color)}
+            helperText={formik.errors.color}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="imageUrl" name="imageUrl" label="Image Url" value={formik.values.imageUrl} onChange={formik.handleChange} error={Boolean(formik.errors.imageUrl)} helperText={formik.errors.imageUrl} />
+          <TextField
+            margin="dense"
+            id="imageUrl"
+            name="imageUrl"
+            label="Image Url"
+            value={formik.values.imageUrl}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.imageUrl)}
+            helperText={formik.errors.imageUrl}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="price" name="price" label="Price" value={formik.values.price} onChange={formik.handleChange} error={Boolean(formik.errors.price)} helperText={formik.errors.price} />
+          <TextField
+            margin="dense"
+            id="price"
+            name="price"
+            label="Price"
+            value={formik.values.price}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.price)}
+            helperText={formik.errors.price}
+          />
         </FormControl>
 
         <FormControl>
-          <TextField margin="dense" id="type" name="type" label="Type" value={formik.values.type} onChange={formik.handleChange} error={Boolean(formik.errors.type)} helperText={formik.errors.type} />
+          <TextField
+            margin="dense"
+            id="type"
+            name="type"
+            label="Type"
+            value={formik.values.type}
+            onChange={formik.handleChange}
+            error={Boolean(formik.errors.type)}
+            helperText={formik.errors.type}
+          />
         </FormControl>
 
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

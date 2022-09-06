@@ -39,7 +39,7 @@ interface LinkProps {
   isActive: boolean;
 }
 
-const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
+export const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
   padding: "0.4rem",
   textDecoration: "none",
   borderRadius: "1rem",
