@@ -4,7 +4,7 @@ import AdminPage from "./pages/AdminPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import DetailedProductPage from "./pages/DetailedProductPage";
 import EditPage from "./pages/EditPage";
-import Home from "./pages/Home";
+import Home from "./pages/HomePage";
 
 function App() {
   return (
