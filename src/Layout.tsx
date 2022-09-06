@@ -1,9 +1,10 @@
+import { Button, Drawer } from "@mui/material";
 import { CSSProperties } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
 
 function Layout() {
-  const { getAllCartItems } = useCartContext();
+  const { cartQuantity } = useCartContext();
 
   return (
     <div>
@@ -15,9 +16,12 @@ function Layout() {
           Admin
         </NavLink>
         <NavLink style={linkStyle} to="checkoutpage">
-          <span>My Cart</span>
-          <span>🛒{getAllCartItems().length}</span>
+          Checkout
         </NavLink>
+        <Button style={cartStyle}>
+          <span>🛒{cartQuantity}</span>
+        </Button>
+        <Drawer></Drawer>
       </header>
       <Outlet />
     </div>
@@ -42,5 +46,15 @@ const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
   color: "black",
   background: isActive ? "#CCCCFF" : undefined,
 });
+
+const cartStyle: CSSProperties = {
+  display: "flex",
+  paddingBottom: "50px",
+  margin: 0,
+  padding: "0.4rem",
+  textDecoration: "none",
+  borderRadius: "1rem",
+  color: "black",
+};
 
 export default Layout;

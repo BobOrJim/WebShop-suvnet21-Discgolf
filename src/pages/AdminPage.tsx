@@ -1,146 +1,159 @@
-import { useDiscContext } from "../context/DiscsContext";
-
-import { Disc } from "../components/disc/disc";
+import { TableSortLabel } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { CSSProperties } from "react";
+import { useState } from "react";
+import { Product } from "../components/product/Product";
+import { useProductContext } from "../context/ProductContext";
+
+const sortIconPositionDictionary: { [columnName: string]: boolean } = {}; //ändra namn till
+sortIconPositionDictionary["id"] = false;
+sortIconPositionDictionary["name"] = false;
+sortIconPositionDictionary["brand"] = false;
+sortIconPositionDictionary["speed"] = false;
+sortIconPositionDictionary["glide"] = false;
+sortIconPositionDictionary["turn"] = false;
+sortIconPositionDictionary["fade"] = false;
+sortIconPositionDictionary["weight"] = false;
+sortIconPositionDictionary["color"] = false;
+sortIconPositionDictionary["price"] = false;
+sortIconPositionDictionary["type"] = false;
 
 const AdminPage = () => {
-  const { getAllDiscs, removeDisc } = useDiscContext();
-  const discs: Disc[] = getAllDiscs();
+  type SortOrder = "asc" | "desc";
+  const [orderDirection, setOrderDirection] = useState<SortOrder>("asc");
+  const [sortIconPosition, setSortIconPosition] = useState<typeof sortIconPositionDictionary>(
+    sortIconPositionDictionary
+  );
 
-  //################### playing with different ccs styles
-  //syntax v1, funkar inte på alla komponenter
-  const StyledTableCell = styled.div`
-    font-weight: bold;
-  `;
-  //syntax v2 (styled components)
-  const StyledTableCell2 = styled(TableCell)`
-    font-weight: bold;
-  `;
-  //syntax v3. Automatiska grejor, där isActive används bakom kulliserna och den fungerar på NavLink men inte TableCell.
-  interface LinkProps {
-    isActive: boolean;
+  const { getAllProducts, removeProduct } = useProductContext();
+  const [rowData, setRowData] = useState<Product[]>(getAllProducts());
+
+  function compareTwoProductsUsingTProp(a: Product, b: Product, orderBy: keyof Product) {
+    if (b[orderBy] < a[orderBy]) {
+      return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+      return 1;
+    }
+    return 0; // equal
   }
-  const TexNavLinkStyle = ({ isActive }: LinkProps): CSSProperties => ({
-    fontWeight: isActive ? "bold" : "normal",
-  });
-//##################### END ###########################
 
-
-
-interface EnhancedTableProps {
-  numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Disc) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
-}
-
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Disc;
-  label: string;
-  numeric: boolean;
-}
-
-
-
-    function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-      if (b[orderBy] < a[orderBy]) {
-        return -1;
-      }
-      if (b[orderBy] > a[orderBy]) {
-        return 1;
-      }
-      return 0;
-    }
-
-    type Order = "asc" | "desc";
-
-    function getComparator<Key extends keyof any>(order: Order, orderBy: Key): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-      return order === "desc" ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
-    }
-
-
-
-  function EnhancedTableHead(props: EnhancedTableProps) {
-    //############################### playing wint order by experingent
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-    props;
-  const createSortHandler =
-    (property: keyof Disc) => (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
-    };
-
-
-
-
-
-
-    return (
-      <>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Disc Name </TableCell>
-                <TableCell align="right">Manufacturer</TableCell>
-                <TableCell align="right">Color</TableCell>
-                <TableCell align="right">Speed</TableCell>
-                <TableCell align="right">Glide</TableCell>
-                <TableCell align="right">Turn</TableCell>
-                <TableCell align="right">Fade</TableCell>
-                <TableCell align="right">Edit</TableCell>
-                <TableCell align="right">Delete</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              {discs.map((disc) => (
-                <TableRow key={disc.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-
-                    <TableCell key={disc.id} align={disc.numeric ? "right" : "left"} padding={disc.disablePadding ? "none" : "normal"} sortDirection={orderBy === disc.id ? order : false}>
-                      <TableSortLabel active={orderBy === headCell.id} direction={orderBy === headCell.id ? order : "asc"} onClick={createSortHandler(headCell.id)}>
-                        {headCell.label}
-                        {orderBy === headCell.id ? (
-                          <Box component="span" sx={visuallyHidden}>
-                            {order === "desc" ? "sorted descending" : "sorted ascending"}
-                          </Box>
-                        ) : null}
-                      </TableSortLabel>
-                    </TableCell>
-                  ))}
-
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </>
+  function handleSortClick(columnName: string) {
+    const property = columnName as keyof Product;
+    //setOrderDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+    const sorted = [...rowData].sort((product1, product2) =>
+      compareTwoProductsUsingTProp(product1, product2, property)
     );
+    console.log("sorted", sorted);
+    sortIconPositionDictionary["id"] = !sortIconPositionDictionary["id"];
+
+    setRowData(orderDirection === "asc" ? sorted : sorted.reverse());
   }
 
   return (
-    <>
-      <BasicTable />
-    </>
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table" stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell
+              align="center"
+              onClick={() => {
+                handleSortClick("id");
+              }}
+            >
+              <TableSortLabel
+                active={true}
+                direction={sortIconPositionDictionary["id"] === true ? "asc" : "desc"}
+              >
+                Id&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("name")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Name&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("brand")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Brand&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("speed")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Speed&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("glide")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Glide&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("turn")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Turn&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("fade")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Fade&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("weight")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Weight&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("color")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Color&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+
+            <TableCell align="center" onClick={() => handleSortClick("brand")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Brand&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+            <TableCell align="center" onClick={() => handleSortClick("price")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Price&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+            <TableCell align="center" onClick={() => handleSortClick("type")}>
+              <TableSortLabel active={true} direction={orderDirection}>
+                Type&nbsp;($)
+              </TableSortLabel>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowData.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell component="th" scope="row">
+                {product.id}
+              </TableCell>
+              <TableCell align="right">{product.name}</TableCell>
+              <TableCell align="right">{product.price}</TableCell>
+              <TableCell align="right">{product.weight}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
 export default AdminPage;
-
-/*
-      {discs.map((disc) => (
-        //<div key={disc.id}>{disc.id}</div>
-        <DiscForm key={disc.id} disc={disc} />
-      ))}
-      */
