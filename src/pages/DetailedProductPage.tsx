@@ -15,22 +15,6 @@ const DetailedProductPage = () => {
 
   const { addOneToCart} = useCartContext();
 
-  //  backgroundColor: "gray", flexDirection:"column", , bgcolor:"FFF" , alignContent:"center"x
-  // 
-      // <Container sx={{ backgroundColor: "red"}}>
-      // <Box sx={{ backgroundColor: "blue", display: "inline-block", width: "55px" }}>1A</Box>
-      // <Box sx={{ backgroundColor: "green", display: "inline-block", width: "55px" }}>1B</Box>
-      // <Box sx={{ backgroundColor: "yellow", display: "inline-block", width: "55px" }}>1C</Box>
-      // </Container>
-      // <Container sx={{ backgroundColor: "red", display: "flex", flexDirection: "column"}}>
-      //   <Box sx={{ backgroundColor: "blue", display: "inline-block", width: "55px" }}>2A</Box>
-      //   <Box sx={{ backgroundColor: "green", display: "inline-block", width: "55px" }}>2B</Box>
-      //  <Box sx={{ backgroundColor: "yellow", display: "inline-block", width: "55px" }}>2C</Box>
-      //   </Container>
-
-  // img center left side and text right side
-
-
   return (
     <>
       {/* skapar en rad */}
