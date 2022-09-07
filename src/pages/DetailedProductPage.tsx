@@ -17,7 +17,7 @@ const DetailedProductPage = () => {
 
   return (
     <>
-      {/* skapar en rad */}
+      { }
     <Container sx={{mx: "auto", display:"flex", flexDirection: "row", border: 1, marginTop:"4%"}}>   
 
         <Box sx={{mx: "auto", display:"block"}} >
