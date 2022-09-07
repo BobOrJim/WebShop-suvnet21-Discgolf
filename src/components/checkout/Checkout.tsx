@@ -17,9 +17,9 @@ import Review from "./Review";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant='body2' color='text.secondary' align='center'>
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color='inherit' href='https://mui.com/'>
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -58,12 +58,9 @@ export default function Checkout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper
-          variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-        >
-          <Typography component="h1" variant="h4" align="center">
+      <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
+        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+          <Typography component='h1' variant='h4' align='center'>
             Checkout
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
@@ -76,10 +73,10 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant='h5' gutterBottom>
                   Thank you for your order.
                 </Typography>
-                <NavLink style={linkStyle} to="/">
+                <NavLink style={linkStyle} to='/'>
                   <Button>Back home</Button>
                 </NavLink>
               </React.Fragment>
@@ -92,11 +89,7 @@ export default function Checkout() {
                       Back
                     </Button>
                   )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
+                  <Button variant='contained' onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
                     {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>

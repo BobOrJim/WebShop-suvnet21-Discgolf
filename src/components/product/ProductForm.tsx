@@ -26,9 +26,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export const ProductForm: FC<ProductCardProps> = (
-  props: ProductCardProps
-): JSX.Element => {
+export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.Element => {
   const { replaceProduct, addProduct } = useProductContext();
   const navigate = useNavigate();
   const formik = useFormik<ProductCreate>({
@@ -65,22 +63,15 @@ export const ProductForm: FC<ProductCardProps> = (
 
   return (
     <Container>
-      <form
-        onSubmit={formik.handleSubmit}
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <input
-          type="hidden"
-          name="id"
-          value={props.product ? props.product.id : ""}
-        />
+      <form onSubmit={formik.handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
+        <input type='hidden' name='id' value={props.product ? props.product.id : ""} />
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="name"
-            name="name"
-            label="Name"
+            margin='dense'
+            id='name'
+            name='name'
+            label='Name'
             value={formik.values.name}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.name)}
@@ -90,10 +81,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="brand"
-            name="brand"
-            label="Brand"
+            margin='dense'
+            id='brand'
+            name='brand'
+            label='Brand'
             value={formik.values.brand}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.brand)}
@@ -103,10 +94,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="speed"
-            name="speed"
-            label="Speed"
+            margin='dense'
+            id='speed'
+            name='speed'
+            label='Speed'
             value={formik.values.speed}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.speed)}
@@ -116,10 +107,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="glide"
-            name="glide"
-            label="Glide"
+            margin='dense'
+            id='glide'
+            name='glide'
+            label='Glide'
             value={formik.values.glide}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.glide)}
@@ -129,10 +120,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="turn"
-            name="turn"
-            label="Turn"
+            margin='dense'
+            id='turn'
+            name='turn'
+            label='Turn'
             value={formik.values.turn}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.turn)}
@@ -142,10 +133,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="fade"
-            name="fade"
-            label="Fade"
+            margin='dense'
+            id='fade'
+            name='fade'
+            label='Fade'
             value={formik.values.fade}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.fade)}
@@ -155,10 +146,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="weight"
-            name="weight"
-            label="Weight"
+            margin='dense'
+            id='weight'
+            name='weight'
+            label='Weight'
             value={formik.values.weight}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.weight)}
@@ -168,10 +159,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="color"
-            name="color"
-            label="Color"
+            margin='dense'
+            id='color'
+            name='color'
+            label='Color'
             value={formik.values.color}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.color)}
@@ -181,10 +172,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="imageUrl"
-            name="imageUrl"
-            label="Image Url"
+            margin='dense'
+            id='imageUrl'
+            name='imageUrl'
+            label='Image Url'
             value={formik.values.imageUrl}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.imageUrl)}
@@ -194,10 +185,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="price"
-            name="price"
-            label="Price"
+            margin='dense'
+            id='price'
+            name='price'
+            label='Price'
             value={formik.values.price}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.price)}
@@ -207,10 +198,10 @@ export const ProductForm: FC<ProductCardProps> = (
 
         <FormControl>
           <TextField
-            margin="dense"
-            id="type"
-            name="type"
-            label="Type"
+            margin='dense'
+            id='type'
+            name='type'
+            label='Type'
             value={formik.values.type}
             onChange={formik.handleChange}
             error={Boolean(formik.errors.type)}
@@ -221,17 +212,17 @@ export const ProductForm: FC<ProductCardProps> = (
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             sx={{ mx: "auto", width: 200, margin: 2 }}
-            variant="contained"
-            color="secondary"
+            variant='contained'
+            color='secondary'
             onClick={() => navigate("/adminpage")}
           >
             Cancel
           </Button>
           <Button
             sx={{ mx: "auto", width: 200, margin: 2 }}
-            variant="contained"
-            color="primary"
-            type="submit"
+            variant='contained'
+            color='primary'
+            type='submit'
           >
             Save
           </Button>

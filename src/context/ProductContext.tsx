@@ -2,13 +2,7 @@
 //discContext wrappar discRepo
 //övrigt program använder sedan enbart discContext
 //Framtida notering: Om ett api används, så skall context wrappa apiet och vara den enda som skickar requests
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Product, ProductCreate } from "../components/product/product";
 import {
@@ -32,13 +26,10 @@ interface IProductContext {
 
 const ProductContext = createContext({} as IProductContext);
 
-export const useProductContext = (): IProductContext =>
-  useContext(ProductContext);
+export const useProductContext = (): IProductContext => useContext(ProductContext);
 
 function ProductContextProvider({ children }: ProductProviderProps) {
-  const [products, setProducts] = useState<Product[]>(
-    getProductsFromLocalStorage()
-  );
+  const [products, setProducts] = useState<Product[]>(getProductsFromLocalStorage());
 
   useEffect(() => {
     seedIfEmpty();
@@ -73,9 +64,7 @@ function ProductContextProvider({ children }: ProductProviderProps) {
   }
 
   function replaceProduct(product: Product) {
-    const newProducts = products.map((p) =>
-      p.id === product.id ? product : p
-    );
+    const newProducts = products.map((p) => (p.id === product.id ? product : p));
     setProducts(newProducts);
   }
 
