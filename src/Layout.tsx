@@ -1,4 +1,4 @@
-import { Button, Drawer } from "@mui/material";
+import { Button, CssBaseline, Drawer } from "@mui/material";
 import { CSSProperties } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useCartContext } from "./context/CartContext";
@@ -8,6 +8,7 @@ function Layout() {
 
   return (
     <div>
+      <CssBaseline />
       <header style={rootStyle}>
         <NavLink style={linkStyle} to="">
           Home
