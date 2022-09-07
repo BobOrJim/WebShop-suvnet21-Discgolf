@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Step from "@mui/material/Step";
@@ -56,8 +55,6 @@ export default function Checkout() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-
       <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' align='center'>
