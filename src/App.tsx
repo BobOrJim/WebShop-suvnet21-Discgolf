@@ -12,18 +12,18 @@ function App() {
   return (
     <ThemeProvider theme={themeLight}>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="detailedproductpage" element={<DetailedProductPage />}>
-            <Route path=":productId" element={<DetailedProductPage />} />
+          <Route path='detailedproductpage' element={<DetailedProductPage />}>
+            <Route path=':productId' element={<DetailedProductPage />} />
           </Route>
-          <Route path="adminpage" element={<AdminPage />} />
-          <Route path="checkoutpage" element={<CheckoutPage />} />
+          <Route path='adminpage' element={<AdminPage />} />
+          <Route path='checkoutpage' element={<CheckoutPage />} />
         </Route>
-        <Route path="editpage" element={<EditPage />}>
-          <Route path=":productId" element={<EditPage />} />
+        <Route path='editpage' element={<EditPage />}>
+          <Route path=':productId' element={<EditPage />} />
         </Route>
-        <Route path="*" element={<div>404 page does not exist</div>}></Route>
+        <Route path='*' element={<div>404 page does not exist</div>}></Route>
       </Routes>
     </ThemeProvider>
   );

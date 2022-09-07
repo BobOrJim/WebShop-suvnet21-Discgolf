@@ -10,13 +10,13 @@ function Layout() {
     <div>
       <CssBaseline />
       <header style={rootStyle}>
-        <NavLink style={linkStyle} to="">
+        <NavLink style={linkStyle} to=''>
           Home
         </NavLink>
-        <NavLink style={linkStyle} to="adminpage">
+        <NavLink style={linkStyle} to='adminpage'>
           Admin
         </NavLink>
-        <NavLink style={linkStyle} to="checkoutpage">
+        <NavLink style={linkStyle} to='checkoutpage'>
           Checkout
         </NavLink>
         <Button style={cartStyle}>
