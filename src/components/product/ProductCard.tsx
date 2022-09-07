@@ -20,7 +20,7 @@ type ProductProps = {
   type: string;
 };
 
-export function ProductCard({
+export default function ProductCard({
   id,
   name,
   brand,
@@ -34,44 +34,34 @@ export function ProductCard({
   price,
   type,
 }: ProductProps) {
-  const {
-    getItemQuantity,
-    addOneToCart,
-    removeOneFromCart,
-    removeAllFromCart,
-  } = useCartContext();
+  const { getItemQuantity, addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
   const quantity = getItemQuantity(id);
 
   return (
     <div style={tmpDivStyle}>
-      <div style={discNameDiv}> {name}</div>
-      <div style={discPriceDiv}>{formatCurrency(price)}</div>
-      <div style={discImageDiv}>
-        <img src={imageUrl} height="200px"></img>
+      <div style={productNameDiv}> {name}</div>
+      <div style={productPriceDiv}>{formatCurrency(price)}</div>
+      <div style={productImageDiv}>
+        <img src={imageUrl} height={SimpleMediaQuery()}></img>
       </div>
       <Button onClick={() => addOneToCart(id)}>Add one to cart</Button>
-      <Button onClick={() => removeOneFromCart(id)}>
-        Remove one from cart
-      </Button>
+      <Button onClick={() => removeOneFromCart(id)}>Remove one from cart</Button>
       <Button onClick={() => removeAllFromCart(id)}>Remove all</Button>
-      <NavLink
-        to={"/detailedproductpage/" + id.toString()}
-        style={detailsStyle}
-      >
+      <NavLink to={"/detailedproductpage/" + id.toString()} style={detailsStyle}>
         More Details
       </NavLink>
     </div>
   );
 }
 
-export default function SimpleMediaQuery(props: ProductProps) {
+function SimpleMediaQuery() {
   let size = 200;
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
     size = 100;
   }
-  return <img height={size + "px"} width={size + "px"} src={props.imageUrl} />;
+  return size + "px";
 }
 
 const tmpDivStyle: CSSProperties = {
@@ -81,19 +71,19 @@ const tmpDivStyle: CSSProperties = {
   margin: "0",
 };
 
-const discNameDiv: CSSProperties = {
+const productNameDiv: CSSProperties = {
   fontWeight: "bold",
   fontSize: "1.5rem",
   margin: "auto",
 };
 
-const discPriceDiv: CSSProperties = {
+const productPriceDiv: CSSProperties = {
   fontWeight: "bold",
   fontSize: "1.5rem",
   margin: "auto",
 };
 
-const discImageDiv: CSSProperties = {
+const productImageDiv: CSSProperties = {
   margin: "auto",
 };
 
