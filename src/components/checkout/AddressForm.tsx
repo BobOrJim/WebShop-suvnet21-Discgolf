@@ -100,7 +100,6 @@ export default function AddressForm({ submit }: Props) {
               error={Boolean(formik.errors.lastName)}
               helperText={formik.errors.lastName}
               fullWidth
-              // autoComplete="on"
               variant='standard'
             />
           </Grid>
@@ -115,7 +114,6 @@ export default function AddressForm({ submit }: Props) {
               error={Boolean(formik.errors.email)}
               helperText={formik.errors.email}
               fullWidth
-              // autoComplete="on"
               variant='standard'
             />
           </Grid>
@@ -130,7 +128,6 @@ export default function AddressForm({ submit }: Props) {
               error={Boolean(formik.errors.address)}
               helperText={formik.errors.address}
               fullWidth
-              // autoComplete="shipping address-line1"
               variant='standard'
             />
           </Grid>
@@ -159,7 +156,6 @@ export default function AddressForm({ submit }: Props) {
               error={Boolean(formik.errors.city)}
               helperText={formik.errors.city}
               fullWidth
-              // autoComplete="shipping address-line1"
               variant='standard'
             />
           </Grid>
