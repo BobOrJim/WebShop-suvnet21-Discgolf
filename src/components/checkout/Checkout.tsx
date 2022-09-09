@@ -16,17 +16,6 @@ import Review from "./Review";
 
 const steps = ["Shipping address", "Review your order"];
 
-// function getStepContent(step: number) {
-//   switch (step) {
-//     case 0:
-//       return <Review />;
-//     case 1:
-//       return <Review />;
-//     default:
-//       throw new Error("Unknown step");
-//   }
-// }
-
 const theme = createTheme();
 
 export default function Checkout() {
