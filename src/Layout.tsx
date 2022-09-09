@@ -1,11 +1,9 @@
-import { Button, CssBaseline, Drawer } from "@mui/material";
+import { CssBaseline } from "@mui/material";
 import { CSSProperties } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { useCartContext } from "./context/CartContext";
+import TempDrawer from "./components/Drawer";
 
 function Layout() {
-  const { cartQuantity } = useCartContext();
-
   return (
     <div>
       <CssBaseline />
@@ -19,10 +17,7 @@ function Layout() {
         <NavLink style={linkStyle} to='checkoutpage'>
           Checkout
         </NavLink>
-        <Button style={cartStyle}>
-          <span>🛒{cartQuantity}</span>
-        </Button>
-        <Drawer></Drawer>
+        <TempDrawer />
       </header>
       <Outlet />
     </div>
@@ -48,14 +43,26 @@ export const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
   background: isActive ? "#CCCCFF" : undefined,
 });
 
-const cartStyle: CSSProperties = {
+const cartButtonStyle: CSSProperties = {
   display: "flex",
-  paddingBottom: "50px",
-  margin: 0,
+  margin: "end auto",
+  width: "3rem",
+  height: "3rem",
   padding: "0.4rem",
   textDecoration: "none",
   borderRadius: "1rem",
-  color: "black",
+  color: "yellow",
+  position: "relative",
+};
+
+const cartMiniButtonStyle: CSSProperties = {
+  color: "blue",
+  width: "2rem",
+  height: "2rem",
+  bottom: 0,
+  right: 0,
+  transform: "translate(25%, 0%)",
+  position: "absolute",
 };
 
 export default Layout;

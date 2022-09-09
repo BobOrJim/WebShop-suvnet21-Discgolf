@@ -1,64 +1,32 @@
-import { SwipeableDrawer } from "@mui/material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import * as React from "react";
+import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
+import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { useState } from "react";
+import { useCartContext } from "../context/CartContext";
+import { ShoppingCart } from "./ShoppingCart";
 
-type Anchor = "top" | "left" | "bottom" | "right";
-
-export default function Drawer() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
-      ) {
-        return;
-      }
-
-      setState({ ...state, [anchor]: open });
-    };
-
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role='presentation'
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Products"].map((text, index) => (
-          <ListItem key={text} disablePadding></ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+export default function TempDrawer() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { cartQuantity } = useCartContext();
 
   return (
-    <div>
-      {(["left", "right", "top", "bottom"] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      <IconButton
+        size='large'
+        edge='start'
+        color='inherit'
+        aria-label='logo'
+        onClick={() => setIsDrawerOpen(true)}
+      >
+        <ShoppingCartRoundedIcon />
+        {cartQuantity}
+      </IconButton>
+      <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+        <Box p={2} width='250px' textAlign='center' role='presentation'>
+          <Typography variant='h6' component='div'>
+            <ShoppingCart isOpen />
+          </Typography>
+        </Box>
+      </Drawer>
+    </>
   );
 }
