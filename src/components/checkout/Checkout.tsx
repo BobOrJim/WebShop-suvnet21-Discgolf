@@ -8,7 +8,7 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import as React from "react";
 import { NavLink } from "react-router-dom";
 import { linkStyle } from "../../Layout";
 import AddressForm from "./AddressForm";
@@ -57,7 +57,6 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {/* {getStepContent(activeStep)} */}
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
