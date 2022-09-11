@@ -61,11 +61,12 @@ const AdminPage = () => {
     if (b[orderBy] > a[orderBy]) {
       return 1;
     }
-    return 0; // equal
+    return 0;
   }
 
   function handleSortClick(columnName: string) {
-    const property = columnName as keyof Product; //Inte optimal felhantering här. Stoppar in i backloggen.
+    //Inte optimal felhantering här. Stoppar in i backloggen.
+    const property = columnName as keyof Product;
     const sorted = [...rowData].sort((product1, product2) =>
       compareTwoProductsUsingTProp(product1, product2, property),
     );

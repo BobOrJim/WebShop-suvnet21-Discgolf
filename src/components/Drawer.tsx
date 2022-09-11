@@ -37,7 +37,7 @@ export default function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Products"].map((text, index) => (
+        {["Products"].map((text) => (
           <ListItem key={text} disablePadding></ListItem>
         ))}
       </List>

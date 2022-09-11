@@ -23,19 +23,18 @@ type ProductProps = {
 export default function ProductCard({
   id,
   name,
-  brand,
-  speed,
-  glide,
-  turn,
-  fade,
-  weight,
-  color,
+  //brand,
+  //speed,
+  //glide,
+  //turn,
+  //fade,
+  //weight,
+  //color,
   imageUrl,
   price,
-  type,
 }: ProductProps) {
-  const { getItemQuantity, addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
-  const quantity = getItemQuantity(id);
+  const { addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
+  //const quantity = getItemQuantity(id);
 
   return (
     <div style={tmpDivStyle}>

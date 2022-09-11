@@ -1,8 +1,8 @@
 import Checkout from "../components/checkout/Checkout";
-import { useProductContext } from "../context/ProductContext";
+//import { useProductContext } from "../context/ProductContext";
 
 const CheckoutPage = () => {
-  const { getAllProducts } = useProductContext();
+  //const { getAllProducts } = useProductContext();
 
   return (
     <div>

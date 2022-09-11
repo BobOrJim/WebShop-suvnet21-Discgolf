@@ -32,7 +32,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(cartItems));
   }, [cartItems]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
   const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
   const openCart = () => setIsOpen(true);
