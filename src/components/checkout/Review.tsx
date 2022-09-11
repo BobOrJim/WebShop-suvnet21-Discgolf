@@ -1,4 +1,5 @@
-import Grid2 from "@mui/material/Grid";
+import { Button } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -30,7 +31,11 @@ const products = [
 ];
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
 
-export default function Review() {
+interface Props {
+  submit: () => void;
+}
+
+export default function Review({ submit }: Props) {
   return (
     <React.Fragment>
       <Typography variant='h6' gutterBottom>
@@ -50,15 +55,18 @@ export default function Review() {
           </Typography>
         </ListItem>
       </List>
-      <Grid2 container spacing={2}>
-        <Grid2 item xs={12} sm={6}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
           <Typography gutterBottom>{addresses.join(", ")}</Typography>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
+      <Button type='submit' onClick={submit}>
+        Confirm
+      </Button>
     </React.Fragment>
   );
 }
