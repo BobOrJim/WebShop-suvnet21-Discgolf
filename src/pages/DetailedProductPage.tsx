@@ -15,7 +15,7 @@ const DetailedProductPage = () => {
   }
 
   return (
-    <>
+    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       {}
       <Container
         sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
@@ -71,7 +71,7 @@ const DetailedProductPage = () => {
         </Box>
         <Button onClick={() => addOneToCart(product.id)}>Add one to cart</Button>
       </Container>
-    </>
+    </Box>
   );
 };
 

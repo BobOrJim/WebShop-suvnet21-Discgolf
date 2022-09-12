@@ -29,6 +29,9 @@ export const ColorsLight = {
   black: "#000",
 };
 
+//create empty theme
+export const defaultTheme = createTheme({});
+
 const themeLight = createTheme({
   palette: {
     primary: {

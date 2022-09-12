@@ -1,10 +1,11 @@
+import { Box } from "@mui/material";
 import Checkout from "../components/checkout/Checkout";
 
 const CheckoutPage = () => {
   return (
-    <div>
+    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       <Checkout></Checkout>
-    </div>
+    </Box>
   );
 };
 
