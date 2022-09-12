@@ -175,32 +175,3 @@ const Header = () => {
   );
 };
 export default Header;
-
-/*
-
-<IconButton onClick={() => console.log("open cart här?")} sx={{ p: 0 }}>
-                  <ShoppingCartIcon
-                    sx={{ display: { md: "flex" }, mr: 3, fontSize: 50, color: "whitesmoke" }}
-                  />
-                  <Typography>
-                    <Box
-                      sx={{
-                        display: {
-                          md: "flex",
-                          position: "absolute",
-                          top: 8,
-                          right: 30,
-                        },
-                        color: "darkred",
-                        fontWeight: 900,
-                        letterSpacing: ".2rem",
-                        underline: "none",
-                        textDecoration: "none",
-                      }}
-                    >
-                      66
-                    </Box>
-                  </Typography>
-                </IconButton>
-
-                */
