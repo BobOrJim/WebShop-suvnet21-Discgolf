@@ -10,9 +10,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import { linkStyle } from "../../Layout";
 import AddressForm from "./AddressForm";
 import Review from "./Review";
+import { CSSProperties } from "react";
 
 const steps = ["Shipping address", "Review your order"];
 
@@ -74,3 +74,15 @@ export default function Checkout() {
     </ThemeProvider>
   );
 }
+
+interface LinkProps {
+  isActive: boolean;
+}
+
+const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
+  padding: "0.4rem",
+  textDecoration: "none",
+  borderRadius: "1rem",
+  color: "black",
+  background: isActive ? "#CCCCFF" : undefined,
+});

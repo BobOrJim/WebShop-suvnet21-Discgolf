@@ -3,12 +3,13 @@ import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
 import { CartItem } from "./CartItem";
 
+/*
 type ShoppingCartProps = {
   isOpen: boolean;
-};
+};*/
 
-export function ShoppingCart({ isOpen }: ShoppingCartProps) {
-
+//export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+export function ShoppingCart() {
   const { cartItems } = useCartContext();
   const { getAllProducts } = useProductContext();
   return (

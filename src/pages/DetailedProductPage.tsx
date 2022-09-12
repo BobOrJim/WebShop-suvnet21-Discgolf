@@ -8,15 +8,14 @@ const DetailedProductPage = () => {
   const params = useParams<{ productId: string }>();
   const { getProductById } = useProductContext();
   const product = getProductById(params.productId || "");
+  const { addOneToCart } = useCartContext();
 
   if (!product) {
     return <p>Product does not exist</p>;
   }
 
-  const { addOneToCart } = useCartContext();
-
   return (
-    <>
+    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       {}
       <Container
         sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
@@ -72,7 +71,7 @@ const DetailedProductPage = () => {
         </Box>
         <Button onClick={() => addOneToCart(product.id)}>Add one to cart</Button>
       </Container>
-    </>
+    </Box>
   );
 };
 
