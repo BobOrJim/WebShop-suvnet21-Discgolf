@@ -8,6 +8,7 @@ type ShoppingCartProps = {
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+
   const { cartItems } = useCartContext();
   const { getAllProducts } = useProductContext();
   return (
