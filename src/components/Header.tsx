@@ -12,7 +12,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import { Link, Outlet } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+//import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import TempDrawer from "./Drawer";
 
 const pages = ["adminpage", "checkoutpage"];
 
@@ -163,7 +164,21 @@ const Header = () => {
             {/* Cart Stuff*/}
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title='Cart'>
-                <IconButton onClick={() => console.log("open cart här?")} sx={{ p: 0 }}>
+                <TempDrawer></TempDrawer>
+              </Tooltip>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Outlet />
+    </>
+  );
+};
+export default Header;
+
+/*
+
+<IconButton onClick={() => console.log("open cart här?")} sx={{ p: 0 }}>
                   <ShoppingCartIcon
                     sx={{ display: { md: "flex" }, mr: 3, fontSize: 50, color: "whitesmoke" }}
                   />
@@ -187,13 +202,5 @@ const Header = () => {
                     </Box>
                   </Typography>
                 </IconButton>
-              </Tooltip>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <Outlet />
-    </>
-  );
-};
-export default Header;
+
+                */
