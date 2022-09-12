@@ -1,6 +1,6 @@
 import EditSharpIcon from "@mui/icons-material/EditSharp";
 import HighlightOffSharpIcon from "@mui/icons-material/HighlightOffSharp";
-import { Button, IconButton, TableFooter, TableSortLabel } from "@mui/material";
+import { Box, Button, IconButton, TableFooter, TableSortLabel } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -75,7 +75,7 @@ const AdminPage = () => {
   }
 
   return (
-    <>
+    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       <Button
         sx={{ mx: "auto", width: 200, margin: 2 }}
         variant='contained'
@@ -264,7 +264,7 @@ const AdminPage = () => {
           </TableFooter>
         </Table>
       </TableContainer>
-    </>
+    </Box>
   );
 };
 
