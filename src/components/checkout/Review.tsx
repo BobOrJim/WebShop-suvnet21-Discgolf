@@ -7,18 +7,17 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useCartContext } from "../../context/CartContext";
 import { useProductContext } from "../../context/ProductContext";
-
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
+import { CartItem } from "../CartItem";
+import { Product } from "../product/product";
 
 interface Props {
   submit: () => void;
-  id: string;
 }
 
-export default function Review({ submit, id }: Props) {
-  const { getAllProducts } = useProductContext();
+export default function Review({ submit }: Props) {
   const { cartItems } = useCartContext();
-  const item = getAllProducts().find((i) => i.id === id);
+  const { getAllProducts } = useProductContext();
+  const [products, setProducts] = React.useState<Product[]>([]);
 
   return (
     <React.Fragment>
@@ -26,18 +25,22 @@ export default function Review({ submit, id }: Props) {
         Order summary
       </Typography>
       <List disablePadding>
-        {cartItems.map((item) => (
-          <ListItem key={item.id} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={item.id} secondary={item.id} />
-            <Typography variant='body2'>{item.quantity}</Typography>
+        <>
+          {cartItems.map((item) => {
+            <CartItem key={item.id} {...item} />;
+            const product = getAllProducts().find((i) => i.id === item.id);
+            const addProducts = (product: Product) => {
+              setProducts((prevState) => [...prevState, product]);
+            };
+          })}
+          <ListItem sx={{ py: 1, px: 0 }}>
+            <ListItemText primary='test' secondary='test 2' />
+            <Typography variant='body2'>test 3</Typography>
+
+            <ListItemText primary='Total' />
+            <Typography variant='subtitle1' sx={{ fontWeight: 700 }}></Typography>
           </ListItem>
-        ))}
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary='Total' />
-          <Typography variant='subtitle1' sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
+        </>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -45,7 +48,7 @@ export default function Review({ submit, id }: Props) {
             Shipping
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography>
+          {/* <Typography gutterBottom>{addresses.join(", ")}</Typography> */}
         </Grid>
       </Grid>
       <Button type='submit' onClick={submit}>
