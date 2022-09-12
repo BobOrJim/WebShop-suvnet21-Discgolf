@@ -5,47 +5,31 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useCartContext } from "../../context/CartContext";
+import { useProductContext } from "../../context/ProductContext";
 
-const products = [
-  {
-    name: "Product 1",
-    desc: "A nice thing",
-    price: "$9.99",
-  },
-  {
-    name: "Product 2",
-    desc: "Another thing",
-    price: "$3.45",
-  },
-  {
-    name: "Product 3",
-    desc: "Something else",
-    price: "$6.51",
-  },
-  {
-    name: "Product 4",
-    desc: "Best thing of all",
-    price: "$14.11",
-  },
-  { name: "Shipping", desc: "", price: "Free" },
-];
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
 
 interface Props {
   submit: () => void;
+  id: string;
 }
 
-export default function Review({ submit }: Props) {
+export default function Review({ submit, id }: Props) {
+  const { getAllProducts } = useProductContext();
+  const { cartItems } = useCartContext();
+  const item = getAllProducts().find((i) => i.id === id);
+
   return (
     <React.Fragment>
       <Typography variant='h6' gutterBottom>
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant='body2'>{product.price}</Typography>
+        {cartItems.map((item) => (
+          <ListItem key={item.id} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={item.id} secondary={item.id} />
+            <Typography variant='body2'>{item.quantity}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>

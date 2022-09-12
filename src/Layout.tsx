@@ -43,26 +43,4 @@ export const linkStyle = ({ isActive }: LinkProps): CSSProperties => ({
   background: isActive ? "#CCCCFF" : undefined,
 });
 
-const cartButtonStyle: CSSProperties = {
-  display: "flex",
-  margin: "end auto",
-  width: "3rem",
-  height: "3rem",
-  padding: "0.4rem",
-  textDecoration: "none",
-  borderRadius: "1rem",
-  color: "yellow",
-  position: "relative",
-};
-
-const cartMiniButtonStyle: CSSProperties = {
-  color: "blue",
-  width: "2rem",
-  height: "2rem",
-  bottom: 0,
-  right: 0,
-  transform: "translate(25%, 0%)",
-  position: "absolute",
-};
-
 export default Layout;
