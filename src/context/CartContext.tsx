@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -10,8 +10,6 @@ type CartItem = {
 };
 
 type CartContext = {
-  openCart: () => void;
-  closeCart: () => void;
   getItemQuantity: (id: string) => void;
   addOneToCart: (id: string) => void;
   removeOneFromCart: (id: string) => void;
@@ -29,14 +27,8 @@ export function useCartContext() {
 
 export function CartContextProvider({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(cartItems));
-  }, [cartItems]);
-  const [, setIsOpen] = useState(false);
-  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
-  const openCart = () => setIsOpen(true);
-  const closeCart = () => setIsOpen(false);
+  const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0);
 
   function getItemQuantity(id: string) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -83,8 +75,6 @@ export function CartContextProvider({ children }: CartProviderProps) {
   return (
     <CartContext.Provider
       value={{
-        openCart,
-        closeCart,
         getItemQuantity,
         addOneToCart,
         removeOneFromCart,

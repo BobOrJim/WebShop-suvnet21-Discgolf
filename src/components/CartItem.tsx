@@ -10,18 +10,36 @@ type CartItemProps = {
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { getAllProducts } = useProductContext();
-  const { removeAllFromCart } = useCartContext();
+  const { addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
   const item = getAllProducts().find((i) => i.id === id);
   if (item == null) return null;
 
   return (
     <div>
       <div>
-        {item.name} {quantity > 1 && <span> x{quantity}</span>}
+        {item.name}{" "}
+        {quantity > 1 && (
+          <span>
+            {" "}
+            <br></br>
+            {quantity} x
+          </span>
+        )}
         {formatCurrency(item.price)}
+        <br></br>
+        <span>Subtotal:</span>
       </div>
       <div>{formatCurrency(item.price * quantity)}</div>
-      <Button onClick={() => removeAllFromCart(item.id)}>remove </Button>
+
+      <Button variant='text' color='inherit' onClick={() => addOneToCart(item.id)}>
+        <span>+</span>
+      </Button>
+      <Button variant='text' color='inherit' onClick={() => removeOneFromCart(item.id)}>
+        <span>-</span>
+      </Button>
+      <Button variant='text' color='inherit' onClick={() => removeAllFromCart(item.id)}>
+        <span>Remove all products of this kind</span>
+      </Button>
     </div>
   );
 }
