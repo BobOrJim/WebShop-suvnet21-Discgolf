@@ -1,6 +1,5 @@
-import { Button, List } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import { Button, Grid, List, ListItem, Typography } from "@mui/material";
+import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import { useProductContext } from "../../context/ProductContext";
 
@@ -22,13 +21,13 @@ export default function Review({ submit }: Props) {
   const checkoutItems: CheckoutItem[] = [];
 
   function createCheckoutItem() {
-    const newCheckoutItem: CheckoutItem = {
-      name: "",
-      price: 0,
-      amount: 0,
-      imageUrl: "",
-    };
     cartItems.map((item) => {
+      const newCheckoutItem: CheckoutItem = {
+        name: "",
+        price: 0,
+        amount: 0,
+        imageUrl: "",
+      };
       newCheckoutItem.amount = item.quantity;
       const product = getAllProducts().find((i) => i.id === item.id);
       if (product) {
@@ -41,27 +40,30 @@ export default function Review({ submit }: Props) {
   }
   createCheckoutItem();
   return (
-    <>
+    <React.Fragment>
       <Typography variant='h6' gutterBottom>
         Order summary
       </Typography>
 
-      {checkoutItems.map((item, index) => {
-        <div key={index}>{item.name}</div>;
-      })}
+      <List>
+        {checkoutItems.map((item, index) => (
+          <ListItem key={index}>
+            <div>{item.name}</div>
+            <div>{item.price}</div>
+          </ListItem>
+        ))}
+      </List>
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <List>
-            {/* {checkoutItems.map((item, index) => {
+          {/* {checkoutItems.map((item, index) => {
               <ListItem key={index} sx={{ py: 1, px: 0 }}>
                 {item.name}
               </ListItem>;
             })} */}
-          </List>
           {/* <ListItem sx={{ py: 1, px: 0 }}>
             <ListItemText primary='test' secondary='test 2' />
 
@@ -76,6 +78,6 @@ export default function Review({ submit }: Props) {
       <Button type='submit' onClick={submit}>
         Confirm
       </Button>
-    </>
+    </React.Fragment>
   );
 }
