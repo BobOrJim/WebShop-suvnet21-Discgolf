@@ -17,6 +17,9 @@ export function CartItem({ id, quantity }: CartItemProps) {
   return (
     <div>
       <div>
+        <div>
+          <img src={item.imageUrl} height='100px' />
+        </div>
         {item.name}{" "}
         {quantity > 1 && (
           <span>
