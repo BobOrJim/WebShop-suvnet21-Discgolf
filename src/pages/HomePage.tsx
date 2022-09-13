@@ -11,7 +11,7 @@ const Home = () => {
         container
         flexGrow={1}
         rowSpacing={1}
-        columnSpacing={{ xs: 10, md: 8 }}
+        columnSpacing={{ xs: 4, md: 2 }}
         sx={{ display: "flex", justifyContent: "center" }}
       >
         {getAllProducts().map((item) => (
