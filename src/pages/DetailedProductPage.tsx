@@ -1,8 +1,8 @@
 import { Box, Button, Container } from "@mui/material";
-import { useParams, useNavigate } from "react-router-dom";
-import { useProductContext } from "../context/ProductContext";
 import Image from "mui-image";
+import { useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
+import { useProductContext } from "../context/ProductContext";
 import { ArrowBack } from "@mui/icons-material";
 
 const DetailedProductPage = () => {

@@ -1,67 +1,80 @@
-import { Button } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
-
-const products = [
-  {
-    name: "Product 1",
-    desc: "A nice thing",
-    price: "$9.99",
-  },
-  {
-    name: "Product 2",
-    desc: "Another thing",
-    price: "$3.45",
-  },
-  {
-    name: "Product 3",
-    desc: "Something else",
-    price: "$6.51",
-  },
-  {
-    name: "Product 4",
-    desc: "Best thing of all",
-    price: "$14.11",
-  },
-  { name: "Shipping", desc: "", price: "Free" },
-];
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
+import { Box, Button, Container, Grid, List, ListItem, Typography } from "@mui/material";
+import Image from "mui-image";
+import React from "react";
+import { useCartContext } from "../../context/CartContext";
+import { useProductContext } from "../../context/ProductContext";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface Props {
   submit: () => void;
 }
 
+type CheckoutItem = {
+  name: string;
+  price: number;
+  amount: number;
+  imageUrl: string;
+};
+
 export default function Review({ submit }: Props) {
+  const { cartItems } = useCartContext();
+  const { getAllProducts } = useProductContext();
+  const checkoutItems: CheckoutItem[] = [];
+
+  function createCheckoutItem() {
+    cartItems.map((item) => {
+      const newCheckoutItem: CheckoutItem = {
+        name: "",
+        price: 0,
+        amount: 0,
+        imageUrl: "",
+      };
+      newCheckoutItem.amount = item.quantity;
+      const product = getAllProducts().find((i) => i.id === item.id);
+      if (product) {
+        newCheckoutItem.name = product.name;
+        newCheckoutItem.price = product.price;
+        newCheckoutItem.imageUrl = product.imageUrl;
+      }
+      checkoutItems.push(newCheckoutItem);
+    });
+  }
+
+  createCheckoutItem();
   return (
     <React.Fragment>
       <Typography variant='h6' gutterBottom>
         Order summary
       </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant='body2'>{product.price}</Typography>
+
+      <List>
+        {checkoutItems.map((item, index) => (
+          <ListItem key={index}>
+            <Image src={item.imageUrl} width='250px' style={{ paddingRight: "1rem" }} />
+            <Box>{item.name}</Box>
+            <Container sx={{ display: "flex", justifyContent: "end", gap: "0.5rem" }}>
+              <Box>{item.price}kr</Box>
+              <Box> x{item.amount}</Box>
+            </Container>
           </ListItem>
         ))}
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary='Total' />
-          <Typography variant='subtitle1' sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          Total amount:{" "}
+          {formatCurrency(
+            cartItems.reduce((total, cartItem) => {
+              const item = getAllProducts().find((i) => i.id === cartItem.id);
+              return total + (item?.price || 0) * cartItem.quantity;
+            }, 0),
+          )}
+        </Box>
       </List>
+
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography>
+          <Typography gutterBottom></Typography>
         </Grid>
       </Grid>
       <Button type='submit' onClick={submit}>

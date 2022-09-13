@@ -23,7 +23,7 @@ export default function TempDrawer() {
       <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <Box p={2} width='250px' textAlign='center' role='presentation'>
           <Typography variant='h6' component='div'>
-            <ShoppingCart isOpen />
+            <ShoppingCart />
           </Typography>
         </Box>
       </Drawer>
