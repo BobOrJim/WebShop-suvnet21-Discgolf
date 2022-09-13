@@ -1,7 +1,9 @@
-import { Button, Grid, List, ListItem, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, List, ListItem, Typography } from "@mui/material";
+import Image from "mui-image";
 import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import { useProductContext } from "../../context/ProductContext";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface Props {
   submit: () => void;
@@ -17,7 +19,6 @@ type CheckoutItem = {
 export default function Review({ submit }: Props) {
   const { cartItems } = useCartContext();
   const { getAllProducts } = useProductContext();
-  // const [products, setProducts] = useState<Product[]>([]);
   const checkoutItems: CheckoutItem[] = [];
 
   function createCheckoutItem() {
@@ -38,6 +39,7 @@ export default function Review({ submit }: Props) {
       checkoutItems.push(newCheckoutItem);
     });
   }
+
   createCheckoutItem();
   return (
     <React.Fragment>
@@ -48,10 +50,23 @@ export default function Review({ submit }: Props) {
       <List>
         {checkoutItems.map((item, index) => (
           <ListItem key={index}>
-            <div>{item.name}</div>
-            <div>{item.price}</div>
+            <Image src={item.imageUrl} width='250px' style={{ paddingRight: "1rem" }} />
+            <Box>{item.name}</Box>
+            <Container sx={{ display: "flex", justifyContent: "end", gap: "0.5rem" }}>
+              <Box>{item.price}kr</Box>
+              <Box> x{item.amount}</Box>
+            </Container>
           </ListItem>
         ))}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          Total amount:{" "}
+          {formatCurrency(
+            cartItems.reduce((total, cartItem) => {
+              const item = getAllProducts().find((i) => i.id === cartItem.id);
+              return total + (item?.price || 0) * cartItem.quantity;
+            }, 0),
+          )}
+        </Box>
       </List>
 
       <Grid container spacing={2}>
@@ -59,20 +74,7 @@ export default function Review({ submit }: Props) {
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          {/* {checkoutItems.map((item, index) => {
-              <ListItem key={index} sx={{ py: 1, px: 0 }}>
-                {item.name}
-              </ListItem>;
-            })} */}
-          {/* <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary='test' secondary='test 2' />
-
-            <Typography variant='body2'></Typography>
-            <ListItemText primary='Total' />
-            <Typography variant='subtitle1' sx={{ fontWeight: 700 }}></Typography>
-          </ListItem>
-          <Typography gutterBottom>John Smith</Typography>
-          {/* <Typography gutterBottom>{addresses.join(", ")}</Typography> */}
+          <Typography gutterBottom></Typography>
         </Grid>
       </Grid>
       <Button type='submit' onClick={submit}>

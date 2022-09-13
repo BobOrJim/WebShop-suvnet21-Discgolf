@@ -1,16 +1,15 @@
-import * as React from "react";
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import DonutLargeIcon from "@mui/icons-material/DonutLarge";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { Link, Outlet } from "react-router-dom";
 //import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import TempDrawer from "./Drawer";
@@ -163,9 +162,7 @@ const Header = () => {
 
             {/* Cart Stuff*/}
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title='Cart'>
-                <TempDrawer></TempDrawer>
-              </Tooltip>
+              <TempDrawer />
             </Box>
           </Toolbar>
         </Container>
