@@ -3,12 +3,14 @@ import Image from "mui-image";
 import { useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { useProductContext } from "../context/ProductContext";
+import { ArrowBack } from "@mui/icons-material";
 
 const DetailedProductPage = () => {
   const params = useParams<{ productId: string }>();
   const { getProductById } = useProductContext();
   const product = getProductById(params.productId || "");
   const { addOneToCart } = useCartContext();
+  const nav = useNavigate();
 
   if (!product) {
     return <p>Product does not exist</p>;
@@ -17,6 +19,9 @@ const DetailedProductPage = () => {
   return (
     <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       {}
+      <Box>
+        <Button onClick={() => nav('/')}>{<ArrowBack/>}</Button>
+      </Box>
       <Container
         sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
       >
