@@ -1,9 +1,9 @@
+import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Container } from "@mui/material";
 import Image from "mui-image";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { useProductContext } from "../context/ProductContext";
-import { ArrowBack } from "@mui/icons-material";
 
 const DetailedProductPage = () => {
   const params = useParams<{ productId: string }>();
@@ -20,7 +20,7 @@ const DetailedProductPage = () => {
     <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
       {}
       <Box>
-        <Button onClick={() => nav('/')}>{<ArrowBack/>}</Button>
+        <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
       </Box>
       <Container
         sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
