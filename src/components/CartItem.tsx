@@ -1,7 +1,8 @@
-import { Button } from "@mui/material";
-import { useCartContext } from "../context/CartContext";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
+import AddProductToCartButton from "./cart/AddProductToCartButton";
+import RemoveAllProductsFromCartButton from "./cart/RemoveAllProductsFromCartButton";
+import RemoveProductFromCartButton from "./cart/RemoveProductFromCartButton";
 
 type CartItemProps = {
   id: string;
@@ -10,7 +11,6 @@ type CartItemProps = {
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { getAllProducts } = useProductContext();
-  const { addOneToCart, removeOneFromCart, removeAllFromCart } = useCartContext();
   const item = getAllProducts().find((i) => i.id === id);
   if (item == null) return null;
 
@@ -33,16 +33,9 @@ export function CartItem({ id, quantity }: CartItemProps) {
         <span>Subtotal:</span>
       </div>
       <div>{formatCurrency(item.price * quantity)}</div>
-
-      <Button variant='text' color='inherit' onClick={() => addOneToCart(item.id)}>
-        <span>+</span>
-      </Button>
-      <Button variant='text' color='inherit' onClick={() => removeOneFromCart(item.id)}>
-        <span>-</span>
-      </Button>
-      <Button variant='text' color='inherit' onClick={() => removeAllFromCart(item.id)}>
-        <span>Remove all products of this kind</span>
-      </Button>
+      <AddProductToCartButton item={item} />
+      <RemoveProductFromCartButton item={item} />
+      <RemoveAllProductsFromCartButton item={item} />
     </div>
   );
 }
