@@ -6,10 +6,16 @@ import { useProductContext } from "../context/ProductContext";
 const Home = () => {
   const { getAllProducts } = useProductContext();
   return (
-    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
-      <Grid2 container flexGrow={1} rowSpacing={4} columnSpacing={{ xs: 2, md: 2 }}>
+    <Box sx={{ width: "100%", marginTop: "5rem" }}>
+      <Grid2
+        container
+        flexGrow={1}
+        rowSpacing={1}
+        columnSpacing={{ xs: 10, md: 8 }}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         {getAllProducts().map((item) => (
-          <Grid2 key={item.id} xs={4} md={4} lg={4}>
+          <Grid2 key={item.id} xs={10} md={6} lg={4}>
             <ProductCard {...item} />
           </Grid2>
         ))}
