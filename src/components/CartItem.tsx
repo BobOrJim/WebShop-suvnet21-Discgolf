@@ -39,3 +39,8 @@ export function CartItem({ id, quantity }: CartItemProps) {
     </div>
   );
 }
+
+// const cartStyle: CSSProperties = {
+//   display: "flex",
+//   fontSize: "0.8rem",
+// };
