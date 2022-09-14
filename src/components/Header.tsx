@@ -8,9 +8,9 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { CSSProperties } from "styled-components";
 import TempDrawer from "./Drawer";
 
 const pages = ["admin", "checkout"];
@@ -37,20 +37,18 @@ const Header = () => {
             {/* IKON DESKTOP END */}
 
             {/* LOGO DESKTOP */}
-            <Box>
-              <NavLink to='/'>
-                <Typography
-                  sx={{
-                    mr: 2,
-                    color: "white",
-                    display: { xs: "none", md: "flex" },
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  DISC SHOP
-                </Typography>
+            <Box
+              sx={{
+                mr: 2,
+                color: "white",
+                display: { xs: "none", md: "flex" },
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                textDecoration: "none",
+              }}
+            >
+              <NavLink style={styleLink} to='/'>
+                DISC SHOP
               </NavLink>
             </Box>
             {/* LOGO DESKTOP END */}
@@ -91,13 +89,7 @@ const Header = () => {
                       handleCloseNavMenu();
                     }}
                   >
-                    <Link
-                      to={page}
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                      }}
-                    >
+                    <Link to={page} style={styleLink}>
                       {page}
                     </Link>
                   </MenuItem>
@@ -114,19 +106,8 @@ const Header = () => {
 
               {/* LOGO MOBILE */}
               <Box>
-                <NavLink to='/'>
-                  <Typography
-                    sx={{
-                      mr: 2,
-                      color: "white",
-                      display: { xs: "flex", md: "none" },
-                      fontWeight: 700,
-                      letterSpacing: ".3rem",
-                      textDecoration: "none",
-                    }}
-                  >
-                    DISC SHOP
-                  </Typography>
+                <NavLink style={styleLink} to='/'>
+                  DISC SHOP
                 </NavLink>
               </Box>
               {/* LOGO MOBILE END */}
@@ -144,18 +125,8 @@ const Header = () => {
                     mr: 2,
                   }}
                 >
-                  <Link to={`/${page}`}>
-                    <Typography
-                      sx={{
-                        color: "white",
-                        fontWeight: 700,
-                        letterSpacing: ".2rem",
-                        underline: "none",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {page}
-                    </Typography>
+                  <Link style={styleLink} to={`/${page}`}>
+                    {page}
                   </Link>
                 </Button>
               ))}
@@ -174,3 +145,13 @@ const Header = () => {
   );
 };
 export default Header;
+
+const styleLink: CSSProperties = {
+  color: "white",
+  fontWeight: 700,
+  letterSpacing: ".3rem",
+  textDecoration: "none",
+  fontFamily: "sans-serif",
+  fontSize: "1rem",
+  alignItems: "center",
+};
