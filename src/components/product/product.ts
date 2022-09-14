@@ -1,15 +1,13 @@
+import { Category } from "./ProductCategory";
 export type Product = {
   id: string;
   name: string;
   brand: string;
-  speed: number;
-  glide: number;
-  turn: number;
-  fade: number;
   weight: number;
   color: string;
   imageUrl: string;
   price: number;
+  category: Category;
   type: string;
 };
 
