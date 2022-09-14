@@ -18,7 +18,7 @@ const DetailedProductPage = () => {
   }
 
   return (
-    <Box sx={{ width: "100%", overflowX: "auto", marginTop: "75px" }}>
+    <Box sx={{ width: "100wh", overflowX: "auto", marginTop: "75px" }}>
       {}
       <Box>
         <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
@@ -40,13 +40,14 @@ const DetailedProductPage = () => {
             sx={{
               mx: "auto",
               display: "inline-block",
-              margin: "3%",
-              marginTop: "8vh",
+              // margin: "1%",
+              marginTop: "4vh",
+              marginRight: "1vh",
               textDecoration: "bold",
             }}
           >
-            <Box>Name:</Box>
-            <Box>Manufacturer: </Box>
+            <Box>Name: </Box>
+            <Box>Brand: </Box>
             <Box>Color: </Box>
             <Box>Speed: </Box>
             <Box>Glide: </Box>
@@ -61,8 +62,9 @@ const DetailedProductPage = () => {
               mx: "auto",
               display: "inline-block",
               margin: "dense",
-              marginTop: "8vh",
+              marginTop: "4vh",
               textDecoration: "bold",
+              marginBottom: "2vh",
               fontSize: SimpleFontMediaQuery(),
             }}
           >
