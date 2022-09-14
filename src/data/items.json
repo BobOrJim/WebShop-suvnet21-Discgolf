@@ -166,41 +166,5 @@
     "imageUrl": "https://discgolf.nu/images/list/active_premium_mentor_yellow_2400px-x2.jpg",
     "price": 159,
     "type": "distance driver"
-  },
-  {
-    "id": "F4whj",
-    "name": "DG Luxury E4 Backpack",
-    "brand": "Latitude 64",
-    "weight": 2800,
-    "color": "Blue",
-    "imageUrl": "https://fyndisc.se/images/normal/latitude-64-e4-blue.jpg",
-    "price": 30,
-    "slots": 1799,
-    "rainproof": false,
-    "type": "big"
-  },
-  {
-    "id": "FI0rF",
-    "name": "Fanatic Go Backpack",
-    "brand": "Discmania",
-    "weight": 1100,
-    "color": "Red, Black",
-    "imageUrl": "https://fyndisc.se/images/normal/fanatic-go.jpg",
-    "price": 299,
-    "slots": 12,
-    "rainproof": true,
-    "type": "medium"
-  },
-  {
-    "id": "AKvyG",
-    "name": "Standard Bag",
-    "brand": "Innova",
-    "weight": 350,
-    "color": "Camo",
-    "imageUrl": "https://fyndisc.se/images/normal/innova_standard_bag_camo.jpg",
-    "price": 299,
-    "slots": 8,
-    "rainproof": true,
-    "type": "small"
   }
 ]

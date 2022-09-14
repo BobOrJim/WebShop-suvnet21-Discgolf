@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
 import AddProductToCartButton from "./cart/AddProductToCartButton";
@@ -15,27 +16,32 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (item == null) return null;
 
   return (
-    <div>
-      <div>
-        <div>
-          <img src={item.imageUrl} height='100px' />
-        </div>
-        {item.name}{" "}
-        {quantity > 1 && (
-          <span>
-            {" "}
-            <br></br>
-            {quantity} x
-          </span>
-        )}
-        {formatCurrency(item.price)}
-        <br></br>
-        <span>Subtotal:</span>
-      </div>
-      <div>{formatCurrency(item.price * quantity)}</div>
-      <AddProductToCartButton item={item} />
-      <RemoveProductFromCartButton item={item} />
-      <RemoveAllProductsFromCartButton item={item} />
-    </div>
+    <Stack direction='row'>
+      <img src={item.imageUrl} height='100px' />
+      <Stack direction='column' sx={{ alignItems: "center" }}>
+        <div>{item.name}</div>
+        <div>{quantity > 1 && <span>{quantity} x </span>}</div>
+        <div>{formatCurrency(item.price)}</div>
+        Subtotal:
+        {formatCurrency(item.price * quantity)}
+        <Stack direction='row'>
+          <AddProductToCartButton item={item} />
+          <RemoveProductFromCartButton item={item} />
+        </Stack>
+        <RemoveAllProductsFromCartButton item={item} />
+      </Stack>
+    </Stack>
   );
 }
+
+/*
+function SimpleFontMediaQuery() {
+  let fontSize = 1;
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    fontSize = 0.7;
+  }
+  return fontSize + "rem";
+}
+*/

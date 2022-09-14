@@ -22,7 +22,7 @@ export default function TempDrawer() {
         {cartQuantity}
       </IconButton>
       <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width='360px' textAlign='center' role='presentation'>
+        <Box p={0} width='360px' textAlign='center' role='presentation'>
           <Typography variant='h6' component='div'>
             <Box>
               <Button onClick={() => setIsDrawerOpen(false)}>{<ArrowBack />}</Button>
