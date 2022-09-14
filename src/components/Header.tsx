@@ -108,28 +108,31 @@ const Header = () => {
             </Box>
             {/* HAMBURGER MENU MOBILE END */}
 
-            {/* IKON MOBILE */}
-            <DonutLargeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-            {/* IKON MOBILE END */}
+            {/* sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} */}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              {/* IKON MOBILE */}
+              <DonutLargeIcon sx={{ display: { xs: "block", md: "none" }, mr: 1 }} />
+              {/* IKON MOBILE END */}
 
-            {/* LOGO MOBILE */}
-            <Box>
-              <NavLink to='/'>
-                <Typography
-                  sx={{
-                    mr: 2,
-                    color: "white",
-                    display: { xs: "flex", md: "none" },
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    textDecoration: "none",
-                  }}
-                >
-                  DISC SHOP
-                </Typography>
-              </NavLink>
+              {/* LOGO MOBILE */}
+              <Box>
+                <NavLink to='/'>
+                  <Typography
+                    sx={{
+                      mr: 2,
+                      color: "white",
+                      display: { xs: "flex", md: "none" },
+                      fontWeight: 700,
+                      letterSpacing: ".3rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    DISC SHOP
+                  </Typography>
+                </NavLink>
+              </Box>
+              {/* LOGO MOBILE END */}
             </Box>
-            {/* LOGO MOBILE END */}
 
             {/* NAVIGATION DESKTOP */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
