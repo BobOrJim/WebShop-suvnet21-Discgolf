@@ -79,7 +79,7 @@ const tmpDivStyle: CSSProperties = {
 
 const productNameDiv: CSSProperties = {
   fontWeight: "bold",
-  fontSize: "1.5rem",
+  fontSize: "1.3rem",
   margin: "auto",
   display: "flex",
   justifyContent: "center",
@@ -87,7 +87,7 @@ const productNameDiv: CSSProperties = {
 
 const productPriceDiv: CSSProperties = {
   fontWeight: "bold",
-  fontSize: "1.5rem",
+  fontSize: "1.3rem",
   margin: "auto",
   justifyContent: "center",
   display: "flex",
