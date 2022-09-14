@@ -1,13 +1,11 @@
-import { Outlet, Route, Routes } from "react-router-dom";
-//import Layout from "./Layout";
 import { ThemeProvider } from "@mui/system";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
+import AdminPage from "./pages/AdminPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import DetailedProductPage from "./pages/DetailedProductPage";
 import EditPage from "./pages/EditPage";
 import HomePage from "./pages/HomePage";
-//import themeLight from "./styles/styles";
-import AdminPage from "./pages/AdminPage";
 import { defaultTheme } from "./styles/styles";
 
 function App() {
