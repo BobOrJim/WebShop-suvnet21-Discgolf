@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import { useCartContext } from "../../context/CartContext";
 import { Product } from "../product/product";
 
@@ -12,8 +12,23 @@ export default function RemoveAllProductsFromCartButton({
   const { removeAllFromCart } = useCartContext();
 
   return (
-    <Button variant='text' color='inherit' onClick={() => removeAllFromCart(item.id)}>
-      <span>Remove all products of this kind</span>
+    <Button
+      variant='text'
+      color='inherit'
+      onClick={() => removeAllFromCart(item.id)}
+      sx={{ fontSize: SimpleFontMediaQuery() }}
+    >
+      <span>Remove products from cart</span>
     </Button>
   );
+}
+
+function SimpleFontMediaQuery() {
+  let fontSize = 1;
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    fontSize = 0.8;
+  }
+  return fontSize + "rem";
 }

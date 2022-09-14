@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mui/material";
 import { useCartContext } from "../context/CartContext";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
@@ -12,7 +13,7 @@ export function ShoppingCart() {
       {cartItems.map((item) => (
         <CartItem key={item.id} {...item} />
       ))}
-      <div>
+      <div style={{ fontSize: SimpleFontMediaQuery() }}>
         Total cart amount:{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
@@ -23,4 +24,14 @@ export function ShoppingCart() {
       </div>
     </div>
   );
+}
+
+function SimpleFontMediaQuery() {
+  let fontSize = 1;
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    fontSize = 0.8;
+  }
+  return fontSize + "rem";
 }
