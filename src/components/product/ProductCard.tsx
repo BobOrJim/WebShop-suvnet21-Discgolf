@@ -38,15 +38,24 @@ export default function ProductCard({
 
   return (
     <div style={tmpDivStyle}>
-      <div style={productNameDiv}> {name}</div>
-      <div style={productPriceDiv}>{formatCurrency(price)}</div>
-      <div style={productImageDiv}>
-        <img src={imageUrl} height={SimpleMediaQuery()}></img>
+      <div style={detailsStyle}>
+        <NavLink to={"/detailedproductpage/" + id.toString()}>
+          <div style={productNameDiv}> {name}</div>
+          <div style={productPriceDiv}>{formatCurrency(price)}</div>
+          <div style={productImageDiv}>
+            <img src={imageUrl} height={SimpleMediaQuery()}></img>
+          </div>
+        </NavLink>
       </div>
-      <Button onClick={() => addOneToCart(id)}>Add one to cart</Button>
-      <NavLink to={"/detailedproductpage/" + id.toString()} style={detailsStyle}>
-        More Details
-      </NavLink>
+      <div style={detailsStyle}>
+        <Button
+          onClick={() => {
+            addOneToCart(id);
+          }}
+        >
+          Add one to cart
+        </Button>
+      </div>
     </div>
   );
 }
@@ -72,16 +81,22 @@ const productNameDiv: CSSProperties = {
   fontWeight: "bold",
   fontSize: "1.5rem",
   margin: "auto",
+  display: "flex",
+  justifyContent: "center",
 };
 
 const productPriceDiv: CSSProperties = {
   fontWeight: "bold",
   fontSize: "1.5rem",
   margin: "auto",
+  justifyContent: "center",
+  display: "flex",
 };
 
 const productImageDiv: CSSProperties = {
   margin: "auto",
+  display: "flex",
+  justifyContent: "center",
 };
 
 const detailsStyle: CSSProperties = {
