@@ -40,7 +40,6 @@ const DetailedProductPage = () => {
             sx={{
               mx: "auto",
               display: "inline-block",
-              // margin: "1%",
               marginTop: "4vh",
               marginRight: "1vh",
               textDecoration: "bold",
