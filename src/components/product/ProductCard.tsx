@@ -44,7 +44,7 @@ export default function ProductCard({
         <img src={imageUrl} height={SimpleMediaQuery()}></img>
       </div>
       <Button onClick={() => addOneToCart(id)}>Add one to cart</Button>
-      <NavLink to={"/detailedproductpage/" + id.toString()} style={detailsStyle}>
+      <NavLink to={"/product/" + id.toString()} style={detailsStyle}>
         More Details
       </NavLink>
     </div>

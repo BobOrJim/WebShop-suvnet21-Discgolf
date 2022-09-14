@@ -81,7 +81,7 @@ const AdminPage = () => {
         variant='contained'
         color='primary'
         onClick={() => {
-          navigate(`/editpage/`);
+          navigate(`/admin/edit/new`);
         }}
       >
         ADD NEW
@@ -216,7 +216,7 @@ const AdminPage = () => {
                     color='primary'
                     size='large'
                     onClick={() => {
-                      navigate(`/editpage/${product.id}`);
+                      navigate(`/admin/edit/${product.id}`);
                     }}
                   >
                     <EditSharpIcon />

@@ -57,7 +57,7 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
         console.log("add product");
         addProduct(values);
       }
-      navigate("/adminpage");
+      navigate("/admin");
     },
   });
 
@@ -214,7 +214,7 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             sx={{ mx: "auto", width: 200, margin: 2 }}
             variant='contained'
             color='secondary'
-            onClick={() => navigate("/adminpage")}
+            onClick={() => navigate("/admin")}
           >
             Cancel
           </Button>

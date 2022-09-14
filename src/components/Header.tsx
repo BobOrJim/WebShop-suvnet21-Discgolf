@@ -10,11 +10,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 //import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import TempDrawer from "./Drawer";
 
-const pages = ["adminpage", "checkoutpage"];
+const pages = ["admin", "checkout"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -27,6 +27,7 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
+  //<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
   return (
     <>
       <AppBar position='fixed'>
@@ -37,21 +38,22 @@ const Header = () => {
             {/* IKON DESKTOP END */}
 
             {/* LOGO DESKTOP */}
-            <Typography
-              noWrap
-              component='a'
-              href='/'
-              sx={{
-                mr: 2,
-                color: "white",
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-              }}
-            >
-              DISC SHOP
-            </Typography>
+            <Box>
+              <NavLink to='/'>
+                <Typography
+                  sx={{
+                    mr: 2,
+                    color: "white",
+                    display: { xs: "none", md: "flex" },
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  DISC SHOP
+                </Typography>
+              </NavLink>
+            </Box>
             {/* LOGO DESKTOP END */}
 
             {/* HAMBURGER MENU MOBILE */}
@@ -97,7 +99,7 @@ const Header = () => {
                         color: "inherit",
                       }}
                     >
-                      {page.charAt(0).toUpperCase() + page.slice(1).replace("page", "")}
+                      {page}
                     </Link>
                   </MenuItem>
                 ))}
@@ -105,30 +107,31 @@ const Header = () => {
             </Box>
             {/* HAMBURGER MENU MOBILE END */}
 
-            {/* IKON MOBILE */}
-            <DonutLargeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-            {/* IKON MOBILE END */}
+            {/* sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} */}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              {/* IKON MOBILE */}
+              <DonutLargeIcon sx={{ display: { xs: "block", md: "none" }, mr: 1 }} />
+              {/* IKON MOBILE END */}
 
-            {/* LOGO MOBILE */}
-            <Typography
-              variant='h5'
-              noWrap
-              component='a'
-              href='/'
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              DISC SHOP
-            </Typography>
-            {/* LOGO MOBILE END */}
+              {/* LOGO MOBILE */}
+              <Box>
+                <NavLink to='/'>
+                  <Typography
+                    sx={{
+                      mr: 2,
+                      color: "white",
+                      display: { xs: "flex", md: "none" },
+                      fontWeight: 700,
+                      letterSpacing: ".3rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    DISC SHOP
+                  </Typography>
+                </NavLink>
+              </Box>
+              {/* LOGO MOBILE END */}
+            </Box>
 
             {/* NAVIGATION DESKTOP */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -152,7 +155,7 @@ const Header = () => {
                         textDecoration: "none",
                       }}
                     >
-                      {page.substring(0, page.length - 4)}
+                      {page}
                     </Typography>
                   </Link>
                 </Button>
