@@ -18,7 +18,7 @@ export default function RemoveAllProductsFromCartButton({
       onClick={() => removeAllFromCart(item.id)}
       sx={{ fontSize: SimpleFontMediaQuery() }}
     >
-      <span>Remove products from cart</span>
+      <span>Remove product</span>
     </Button>
   );
 }

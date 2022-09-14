@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
@@ -17,23 +17,21 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (item == null) return null;
 
   return (
-    <Grid2
-      container
-      flexGrow={1}
-      rowSpacing={1}
-      columnSpacing={{ xs: 2 }}
-      sx={{ display: "flex", justifyContent: "center", fontSize: SimpleFontMediaQuery() }}
-    >
+    <Stack direction='row'>
       <img src={item.imageUrl} height='100px' />
-      {item.name}
-      {quantity > 1 && <span>{quantity} x </span>}
-      {formatCurrency(item.price)}
-      Subtotal:
-      {formatCurrency(item.price * quantity)}
-      <AddProductToCartButton item={item} />
-      <RemoveProductFromCartButton item={item} />
-      <RemoveAllProductsFromCartButton item={item} />
-    </Grid2>
+      <Stack direction='column' sx={{ alignItems: "center" }}>
+        <div>{item.name}</div>
+        <div>{quantity > 1 && <span>{quantity} x </span>}</div>
+        <div>{formatCurrency(item.price)}</div>
+        Subtotal:
+        {formatCurrency(item.price * quantity)}
+        <Stack direction='row'>
+          <AddProductToCartButton item={item} />
+          <RemoveProductFromCartButton item={item} />
+        </Stack>
+        <RemoveAllProductsFromCartButton item={item} />
+      </Stack>
+    </Stack>
   );
 }
 

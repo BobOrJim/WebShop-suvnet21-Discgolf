@@ -13,7 +13,14 @@ export function ShoppingCart() {
       {cartItems.map((item) => (
         <CartItem key={item.id} {...item} />
       ))}
-      <div style={{ fontSize: SimpleFontMediaQuery() }}>
+      <div
+        style={{
+          fontSize: SimpleFontMediaQuery(),
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "1rem",
+        }}
+      >
         Total cart amount:{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
