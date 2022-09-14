@@ -6,6 +6,7 @@ import { CartItem } from "./CartItem";
 export function ShoppingCart() {
   const { cartItems } = useCartContext();
   const { getAllProducts } = useProductContext();
+
   return (
     <div>
       {cartItems.map((item) => (
