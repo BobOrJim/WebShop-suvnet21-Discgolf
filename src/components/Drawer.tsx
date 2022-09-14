@@ -1,5 +1,6 @@
+import { ArrowBack } from "@mui/icons-material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { useCartContext } from "../context/CartContext";
 import { ShoppingCart } from "./ShoppingCart";
@@ -21,8 +22,11 @@ export default function TempDrawer() {
         {cartQuantity}
       </IconButton>
       <Drawer anchor='right' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width='250px' textAlign='center' role='presentation'>
+        <Box p={2} width='360px' textAlign='center' role='presentation'>
           <Typography variant='h6' component='div'>
+            <Box>
+              <Button onClick={() => setIsDrawerOpen(false)}>{<ArrowBack />}</Button>
+            </Box>
             <ShoppingCart />
           </Typography>
         </Box>
