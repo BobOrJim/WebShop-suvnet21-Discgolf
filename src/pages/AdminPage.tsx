@@ -91,26 +91,21 @@ const AdminPage = () => {
           <TableHead>
             <TableRow>
               <TableCell align='center' onClick={() => handleSortClick("id")}>
-                <TableSortLabel
-                  active={true}
-                  direction={columnOrderDictionary["id"] === true ? "asc" : "desc"}
-                >
+                <TableSortLabel direction={columnOrderDictionary["id"] === true ? "asc" : "desc"}>
                   Id&nbsp;
                 </TableSortLabel>
               </TableCell>
 
+              <TableCell align='center'></TableCell>
+
               <TableCell align='center' onClick={() => handleSortClick("name")}>
-                <TableSortLabel
-                  active={true}
-                  direction={columnOrderDictionary["name"] === true ? "asc" : "desc"}
-                >
+                <TableSortLabel direction={columnOrderDictionary["name"] === true ? "asc" : "desc"}>
                   Name&nbsp;
                 </TableSortLabel>
               </TableCell>
 
               <TableCell align='center' onClick={() => handleSortClick("brand")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["brand"] === true ? "asc" : "desc"}
                 >
                   Brand&nbsp;
@@ -119,7 +114,6 @@ const AdminPage = () => {
 
               <TableCell align='center' onClick={() => handleSortClick("speed")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["speed"] === true ? "asc" : "desc"}
                 >
                   Speed&nbsp;
@@ -128,7 +122,6 @@ const AdminPage = () => {
 
               <TableCell align='center' onClick={() => handleSortClick("glide")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["glide"] === true ? "asc" : "desc"}
                 >
                   Glide&nbsp;
@@ -136,26 +129,19 @@ const AdminPage = () => {
               </TableCell>
 
               <TableCell align='center' onClick={() => handleSortClick("turn")}>
-                <TableSortLabel
-                  active={true}
-                  direction={columnOrderDictionary["turn"] === true ? "asc" : "desc"}
-                >
+                <TableSortLabel direction={columnOrderDictionary["turn"] === true ? "asc" : "desc"}>
                   Turn&nbsp;
                 </TableSortLabel>
               </TableCell>
 
               <TableCell align='center' onClick={() => handleSortClick("fade")}>
-                <TableSortLabel
-                  active={true}
-                  direction={columnOrderDictionary["fade"] === true ? "asc" : "desc"}
-                >
+                <TableSortLabel direction={columnOrderDictionary["fade"] === true ? "asc" : "desc"}>
                   Fade&nbsp;
                 </TableSortLabel>
               </TableCell>
 
               <TableCell align='center' onClick={() => handleSortClick("weight")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["weight"] === true ? "asc" : "desc"}
                 >
                   Weight&nbsp;
@@ -164,7 +150,6 @@ const AdminPage = () => {
 
               <TableCell align='center' onClick={() => handleSortClick("color")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["color"] === true ? "asc" : "desc"}
                 >
                   Color&nbsp;
@@ -173,17 +158,13 @@ const AdminPage = () => {
 
               <TableCell align='center' onClick={() => handleSortClick("price")}>
                 <TableSortLabel
-                  active={true}
                   direction={columnOrderDictionary["price"] === true ? "asc" : "desc"}
                 >
                   Price&nbsp;
                 </TableSortLabel>
               </TableCell>
               <TableCell align='center' onClick={() => handleSortClick("type")}>
-                <TableSortLabel
-                  active={true}
-                  direction={columnOrderDictionary["type"] === true ? "asc" : "desc"}
-                >
+                <TableSortLabel direction={columnOrderDictionary["type"] === true ? "asc" : "desc"}>
                   Type&nbsp;
                 </TableSortLabel>
               </TableCell>
@@ -200,6 +181,14 @@ const AdminPage = () => {
                 <TableCell align='center' component='th' scope='row'>
                   {product.id}
                 </TableCell>
+                <TableCell align='center'>
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    style={{ width: "100px", height: "100px" }}
+                  />
+                </TableCell>
+
                 <TableCell align='center'>{product.name}</TableCell>
                 <TableCell align='center'>{product.brand}</TableCell>
                 <TableCell align='center'>{product.speed}</TableCell>
