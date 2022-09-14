@@ -1,5 +1,4 @@
-import { Stack, useMediaQuery } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
+import { Stack } from "@mui/material";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
 import AddProductToCartButton from "./cart/AddProductToCartButton";
@@ -35,6 +34,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
   );
 }
 
+/*
 function SimpleFontMediaQuery() {
   let fontSize = 1;
 
@@ -44,3 +44,4 @@ function SimpleFontMediaQuery() {
   }
   return fontSize + "rem";
 }
+*/
