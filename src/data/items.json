@@ -11,6 +11,7 @@
     "color": "Blue",
     "imageUrl": "https://discgolf.nu/images/zoom/l64_grand_orbit_glory_firstrun_blue.jpg",
     "price": 269,
+    "category": "Disc",
     "type": "fairway driver"
   },
   {
@@ -25,6 +26,7 @@
     "color": "Orange",
     "imageUrl": "https://discgolf.nu/images/normal/lucid-x-culprit-chris-clemons-team-series.jpg",
     "price": 239,
+    "category": "Disc",
     "type": "fairway driver"
   },
   {
@@ -39,6 +41,7 @@
     "color": "Pink",
     "imageUrl": "https://discgolf.nu/images/list/opto-x-chameleon-flow-clint-calvin-team-series.jpg",
     "price": 239,
+    "category": "Disc",
     "type": "fairway driver"
   },
   {
@@ -53,6 +56,7 @@
     "color": "Blue, White",
     "imageUrl": "https://discgolf.nu/images/normal/grand-orbit-rive-linus-carlsson-blue-white.jpg",
     "price": 269,
+    "category": "Disc",
     "type": "distance driver"
   },
   {
@@ -67,6 +71,7 @@
     "color": "Light-Yellow",
     "imageUrl": "https://discgolf.nu/images/normal/grym-k1-x-out-nice-to-have.jpg",
     "price": 149,
+    "category": "Disc",
     "type": "distance driver"
   },
   {
@@ -81,6 +86,7 @@
     "color": "Mint & Green",
     "imageUrl": "https://discsport.se/img/disc/kastaplast/k1-guld-FR.webp",
     "price": 199,
+    "category": "Disc",
     "type": "distance driver"
   },
   {
@@ -95,6 +101,7 @@
     "color": "Blue",
     "imageUrl": "https://discsport.se/img/disc/discraft/z-buzzz.jpg",
     "price": 169,
+    "category": "Disc",
     "type": "midrange"
   },
   {
@@ -109,6 +116,7 @@
     "color": "White",
     "imageUrl": "https://discsport.se/img/disc/discmania/d-line-flex2-p1.webp",
     "price": 129,
+    "category": "Disc",
     "type": "putter"
   },
   {
@@ -123,6 +131,7 @@
     "color": "Blue",
     "imageUrl": " https://discsport.se/img/disc/clash/steady-butter.webp",
     "price": 199,
+    "category": "Disc",
     "type": "putter"
   },
   {
@@ -137,6 +146,7 @@
     "color": "Orange",
     "imageUrl": "https://discsport.se/img/disc/latitude64/fuseopto.jpg",
     "price": 179,
+    "category": "Disc",
     "type": "midrange"
   },
   {
@@ -151,6 +161,7 @@
     "color": "Gray",
     "imageUrl": "https://discsport.se/img/disc/kastaplast/k1-soft-berg-moomin.webp",
     "price": 199,
+    "category": "Disc",
     "type": "putter"
   },
   {
@@ -165,6 +176,49 @@
     "color": "Yellow",
     "imageUrl": "https://discgolf.nu/images/list/active_premium_mentor_yellow_2400px-x2.jpg",
     "price": 159,
+    "category": "Disc",
     "type": "distance driver"
+  },
+  {
+    "id": "F4whj",
+    "name": "DG Luxury E4 Backpack",
+    "brand": "Latitude 64",
+    "weight": 2800,
+    "color": "Blue",
+    "imageUrl": "https://fyndisc.se/images/normal/latitude-64-e4-blue.jpg",
+    "price": 30,
+    "category": "Bag",
+    "slots": 1799,
+    "rainproof": false,
+    "type": "ig"
+
+  },
+  {
+    "id": "FI0rF",
+    "name": "Fanatic Go backpack",
+    "brand": "Discmania",
+    "weight": 1100,
+    "color": "Red, Black",
+    "imageUrl": "https://fyndisc.se/images/normal/fanatic-go.jpg",
+    "price": 299,
+    "category": "Bag",
+    "slots": 12,
+    "rainproof": true,
+    "type": "medium"
+
+  },
+  {
+    "id": "AKvyG",
+    "name": "Standard Bag",
+    "brand": "Innova",
+    "weight": 350,
+    "color": "Camo",
+    "imageUrl": "https://fyndisc.se/images/normal/innova_standard_bag_camo.jpg",
+    "price": 299,
+    "category": "Bag",
+    "slots": 8,
+    "rainproof": true,
+    "type": "small"
+
   }
 ]
