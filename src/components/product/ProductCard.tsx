@@ -39,7 +39,7 @@ export default function ProductCard({
   return (
     <div style={tmpDivStyle}>
       <div style={detailsStyle}>
-        <NavLink to={"/detailedproductpage/" + id.toString()}>
+        <NavLink to={"/product/" + id.toString()}>
           <div style={productNameDiv}> {name}</div>
           <div style={productPriceDiv}>{formatCurrency(price)}</div>
           <div style={productImageDiv}>

@@ -10,12 +10,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
-//import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import TempDrawer from "./Drawer";
 
-const pages = ["adminpage", "checkoutpage"];
+const pages = ["admin", "checkout"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -100,7 +98,7 @@ const Header = () => {
                         color: "inherit",
                       }}
                     >
-                      {page.charAt(0).toUpperCase() + page.slice(1).replace("page", "")}
+                      {page}
                     </Link>
                   </MenuItem>
                 ))}
@@ -156,7 +154,7 @@ const Header = () => {
                         textDecoration: "none",
                       }}
                     >
-                      {page.substring(0, page.length - 4)}
+                      {page}
                     </Typography>
                   </Link>
                 </Button>
