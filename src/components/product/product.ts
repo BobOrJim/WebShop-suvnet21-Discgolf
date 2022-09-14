@@ -1,4 +1,4 @@
-import { Category } from "./ProductCategory";
+import { ProductCategory } from "./ProductCategory";
 export type Product = {
   id: string;
   name: string;
@@ -7,7 +7,7 @@ export type Product = {
   color: string;
   imageUrl: string;
   price: number;
-  category: Category;
+  category: ProductCategory;
   type: string;
 };
 
