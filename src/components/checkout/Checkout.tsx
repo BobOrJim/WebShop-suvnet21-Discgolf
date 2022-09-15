@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import AddressForm from "./AddressForm";
 import Review from "./Review";
 import { CSSProperties } from "react";
+import { useCartContext } from "../../context/CartContext";
 
 const steps = ["Shipping address", "Review your order"];
 
@@ -20,9 +21,13 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { clearCart } = useCartContext();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if (activeStep === 1) {
+      clearCart();
+    }
   };
 
   const handleBack = () => {
