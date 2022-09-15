@@ -89,7 +89,7 @@ const Header = () => {
                       handleCloseNavMenu();
                     }}
                   >
-                    <Link to={page} style={styleLink}>
+                    <Link to={page} style={styleLinkHamburger}>
                       {page}
                     </Link>
                   </MenuItem>
@@ -148,6 +148,16 @@ export default Header;
 
 const styleLink: CSSProperties = {
   color: "white",
+  fontWeight: 700,
+  letterSpacing: ".3rem",
+  textDecoration: "none",
+  fontFamily: "sans-serif",
+  fontSize: "1rem",
+  alignItems: "center",
+};
+
+const styleLinkHamburger: CSSProperties = {
+  color: "blue",
   fontWeight: 700,
   letterSpacing: ".3rem",
   textDecoration: "none",
