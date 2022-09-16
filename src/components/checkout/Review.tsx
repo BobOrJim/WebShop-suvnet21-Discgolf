@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, List, ListItem, Typography } from "@mui/material";
+import { Box, Button, Container, List, ListItem, Typography } from "@mui/material";
 import Image from "mui-image";
 import React from "react";
 import { useCartContext } from "../../context/CartContext";
@@ -69,14 +69,6 @@ export default function Review({ submit }: Props) {
         </Box>
       </List>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom></Typography>
-        </Grid>
-      </Grid>
       <Button type='submit' onClick={submit}>
         Confirm
       </Button>

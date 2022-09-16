@@ -42,9 +42,6 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {activeStep}
-      {activeStepOld}
-
       <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' align='center'>
@@ -85,7 +82,7 @@ export default function Checkout() {
                 ) : (
                   <React.Fragment>
                     <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                      {activeStep !== 0 && (
+                      {activeStep === 2 && (
                         <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                           Back to shipping
                         </Button>
