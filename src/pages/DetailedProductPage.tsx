@@ -1,6 +1,5 @@
 import { ArrowBack } from "@mui/icons-material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Box, Button, Container, IconButton, Typography, useMediaQuery } from "@mui/material";
+import { Box, Button, Container, Typography, useMediaQuery } from "@mui/material";
 import Image from "mui-image";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
@@ -19,10 +18,6 @@ const DetailedProductPage = () => {
 
   return (
     <Box sx={{ width: "100wh", overflowX: "auto", marginTop: "75px" }}>
-      {}
-      <Box>
-        <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
-      </Box>
       <Container
         sx={{
           mx: "auto",
@@ -131,11 +126,18 @@ const DetailedProductPage = () => {
             <Box sx={{ fontSize: "20px" }}>Color: {product.color}</Box>
             <Box sx={{ fontSize: "20px" }}>Type: {product.type}</Box>
             <Box sx={{ fontSize: "20px" }}>Weight: {product.weight}</Box>
+            <Button
+              variant='text'
+              sx={{ color: "green", fontSize: "1.5rem" }}
+              onClick={() => addOneToCart(product.id)}
+            >
+              Add to cart
+            </Button>
           </Box>
 
-          <IconButton onClick={() => addOneToCart(product.id)}>
-            <AddCircleIcon />
-          </IconButton>
+          <Box>
+            <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
+          </Box>
         </Box>
       </Container>
     </Box>
