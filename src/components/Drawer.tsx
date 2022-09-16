@@ -29,11 +29,13 @@ export default function TempDrawer() {
               <Button onClick={() => setIsDrawerOpen(false)}>{<ArrowBack />}</Button>
             </Box>
             <ShoppingCart />
-            <Box>
-              <NavLink to='/Checkout' onClick={() => setIsDrawerOpen(false)}>
-                Go to Checkout
-              </NavLink>
-            </Box>
+            {cartQuantity > 0 && (
+              <Box>
+                <NavLink to='/Checkout' onClick={() => setIsDrawerOpen(false)}>
+                  Go to Checkout
+                </NavLink>
+              </Box>
+            )}
           </Typography>
         </Box>
       </Drawer>
