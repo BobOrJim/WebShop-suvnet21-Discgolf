@@ -1,5 +1,7 @@
 ## Inlämning 4- WebShop-suvnet21-Discgolf
 
+https://deploy-preview-167--statuesque-tanuki-d9e115.netlify.app/
+
 ### Team members:
 
 Jimmy Nordin, Lucas Benjaminson, Frans Billqvist, Daniel Toresson
