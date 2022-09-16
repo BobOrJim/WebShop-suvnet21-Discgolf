@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { IconButton } from "@mui/material";
 import { useCartContext } from "../../context/CartContext";
 import { Product } from "../product/product";
 
@@ -10,8 +11,8 @@ export default function RemoveProductFromCartButton({ item }: RemoveProductFromC
   const { removeOneFromCart } = useCartContext();
 
   return (
-    <Button variant='text' color='inherit' onClick={() => removeOneFromCart(item.id)}>
-      <span>-</span>
-    </Button>
+    <IconButton onClick={() => removeOneFromCart(item.id)}>
+      <RemoveCircleIcon />
+    </IconButton>
   );
 }
