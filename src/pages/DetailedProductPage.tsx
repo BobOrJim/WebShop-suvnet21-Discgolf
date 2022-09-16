@@ -60,26 +60,6 @@ const DetailedProductPage = () => {
             sx={{
               mx: "auto",
               display: "inline-block",
-              marginTop: "4vh",
-              marginRight: "1vh",
-              textDecoration: "bold",
-            }}
-          >
-            <Box>Name: </Box>
-            <Box>Brand: </Box>
-            <Box>Color: </Box>
-            <Box>Speed: </Box>
-            <Box>Glide: </Box>
-            <Box>Turn: </Box>
-            <Box>Fade: </Box>
-            <Box>Price: </Box>
-            <Box>Type: </Box>
-            <Box>Weight: </Box>
-          </Box>
-          <Box
-            sx={{
-              mx: "auto",
-              display: "inline-block",
               margin: "dense",
               marginTop: "4vh",
               textDecoration: "bold",
@@ -87,16 +67,16 @@ const DetailedProductPage = () => {
               fontSize: SimpleFontMediaQuery(),
             }}
           >
-            <Box>{product.name}</Box>
-            <Box>{product.brand}</Box>
-            <Box>{product.color}</Box>
-            <Box>{product.speed}</Box>
-            <Box>{product.glide}</Box>
-            <Box>{product.turn}</Box>
-            <Box>{product.fade}</Box>
-            <Box>{product.price}</Box>
-            <Box>{product.type}</Box>
-            <Box>{product.weight}</Box>
+            <Box>Name: {product.name}</Box>
+            <Box>Brand: {product.brand}</Box>
+            <Box>Color: {product.color}</Box>
+            <Box>Speed: {product.speed}</Box>
+            <Box>Glide: {product.glide}</Box>
+            <Box>Turn: {product.turn}</Box>
+            <Box>Fade: {product.fade}</Box>
+            <Box>Price: {product.price}</Box>
+            <Box>Type: {product.type}</Box>
+            <Box>Weight: {product.weight}</Box>
           </Box>
           <IconButton onClick={() => addOneToCart(product.id)}>
             <AddCircleIcon />
@@ -122,7 +102,7 @@ function SimpleFontMediaQuery() {
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
-    fontSize = 0.7;
+    fontSize = 1;
   }
   return fontSize + "rem";
 }
