@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
 import AddProductToCartButton from "./cart/AddProductToCartButton";
@@ -18,10 +18,10 @@ export function CartItem({ id, quantity }: CartItemProps) {
   return (
     <Stack direction='row'>
       <img src={item.imageUrl} height='100px' />
-      <Stack direction='column' sx={{ alignItems: "center" }}>
-        <div>{item.name}</div>
-        <div>{quantity > 1 && <span>{quantity} x </span>}</div>
-        <div>{formatCurrency(item.price)}</div>
+      <Stack direction='column' sx={{ alignItems: "center", minWidth: "250px" }}>
+        <Box>{item.name}</Box>
+        <Box>{quantity > 1 && <span>{quantity} x </span>}</Box>
+        <Box>{formatCurrency(item.price)}</Box>
         Subtotal:
         {formatCurrency(item.price * quantity)}
         <Stack direction='row'>
