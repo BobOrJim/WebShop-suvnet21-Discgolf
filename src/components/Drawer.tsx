@@ -2,6 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
 import { ShoppingCart } from "./ShoppingCart";
 
@@ -28,6 +29,11 @@ export default function TempDrawer() {
               <Button onClick={() => setIsDrawerOpen(false)}>{<ArrowBack />}</Button>
             </Box>
             <ShoppingCart />
+            <Box>
+              <NavLink to='/Checkout' onClick={() => setIsDrawerOpen(false)}>
+                Go to Checkout
+              </NavLink>
+            </Box>
           </Typography>
         </Box>
       </Drawer>
