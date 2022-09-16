@@ -25,16 +25,13 @@ const MenuComp = () => {
   } else {
     pages = ["admin", "checkout"];
   }
+  
   return (
     <>
     <AppBar position='fixed'>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
-            {/* IKON DESKTOP */}
             <DonutLargeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 3 }} />
-            {/* IKON DESKTOP END */}
-
-            {/* LOGO DESKTOP */}
             <Box
               sx={{
                 mr: 2,
@@ -49,9 +46,6 @@ const MenuComp = () => {
                 DISC SHOP
               </NavLink>
             </Box>
-            {/* LOGO DESKTOP END */}
-
-            {/* HAMBURGER MENU MOBILE */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size='large'
@@ -94,24 +88,14 @@ const MenuComp = () => {
                 ))}
               </Menu>
             </Box>
-            {/* HAMBURGER MENU MOBILE END */}
-
-            {/* sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              {/* IKON MOBILE */}
               <DonutLargeIcon sx={{ display: { xs: "block", md: "none" }, mr: 1 }} />
-              {/* IKON MOBILE END */}
-
-              {/* LOGO MOBILE */}
               <Box>
                 <NavLink style={styleLink} to='/'>
                   DISC SHOP
                 </NavLink>
               </Box>
-              {/* LOGO MOBILE END */}
             </Box>
-
-            {/* NAVIGATION DESKTOP */}
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button
@@ -129,9 +113,6 @@ const MenuComp = () => {
                 </Button>
               ))}
             </Box>
-            {/* NAVIGATION DESKTOP END */}
-
-            {/* Cart Stuff*/}
             <Box sx={{ flexGrow: 0 }}>
               <TempDrawer />
             </Box>
