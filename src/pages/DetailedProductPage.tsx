@@ -24,9 +24,24 @@ const DetailedProductPage = () => {
         <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
       </Box>
       <Container
-        sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
+        sx={{
+          mx: "auto",
+          display: "flex",
+          flexDirection: FlexDirectionMediaQuery(),
+          border: 1,
+          marginTop: "4%",
+        }}
       >
-        <Box sx={{ mx: "auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Box
+          sx={{
+            mx: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "1.5rem",
+            paddingBottom: "1.5rem",
+          }}
+        >
           <Image
             src={product.imageUrl}
             height={SimpleImgMediaQuery()}
@@ -35,7 +50,12 @@ const DetailedProductPage = () => {
             errorIcon={true}
           />
         </Box>
-        <Box sx={{ fontSize: SimpleFontMediaQuery(), display: "flex" }}>
+        <Box
+          sx={{
+            fontSize: SimpleFontMediaQuery(),
+            display: "flex",
+          }}
+        >
           <Box
             sx={{
               mx: "auto",
@@ -105,6 +125,16 @@ function SimpleFontMediaQuery() {
     fontSize = 0.7;
   }
   return fontSize + "rem";
+}
+
+function FlexDirectionMediaQuery() {
+  let flexDirection = "row";
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    flexDirection = "column";
+  }
+  return flexDirection;
 }
 
 export default DetailedProductPage;
