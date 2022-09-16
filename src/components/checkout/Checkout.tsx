@@ -20,16 +20,19 @@ import Review from "./Review";
 const steps = ["Confirm product", "Shipping address", "Review your order"];
 const theme = createTheme();
 
+let activeStepOld = 0;
+
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const { cartQuantity, clearCart } = useCartContext();
   const nav = useNavigate();
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    activeStepOld = activeStep;
     if (activeStep === 2) {
       clearCart();
     }
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
@@ -39,13 +42,15 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      {activeStep}
+      {activeStepOld}
 
       <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' align='center'>
             Checkout
           </Typography>
-          {cartQuantity == 0 && (
+          {cartQuantity == 0 && activeStepOld != 2 && (
             <Container>
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 Your cart is empty! Why did you go here?
@@ -55,7 +60,7 @@ export default function Checkout() {
               </Box>
             </Container>
           )}
-          {cartQuantity > 0 && (
+          {(cartQuantity > 0 || activeStep > 0) && (
             <Box>
               <Box>
                 <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
@@ -68,7 +73,7 @@ export default function Checkout() {
                 ))}
               </Stepper>
               <React.Fragment>
-                {activeStep === steps.length ? (
+                {activeStep === 3 && activeStepOld === 2 ? (
                   <React.Fragment>
                     <Typography variant='h5' gutterBottom>
                       Thank you for your order.
