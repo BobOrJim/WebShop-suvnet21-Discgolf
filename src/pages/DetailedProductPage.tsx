@@ -1,6 +1,6 @@
 import { ArrowBack } from "@mui/icons-material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Box, Button, Container, IconButton, useMediaQuery } from "@mui/material";
+import { Box, Button, Container, IconButton, Typography, useMediaQuery } from "@mui/material";
 import Image from "mui-image";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
@@ -24,38 +24,96 @@ const DetailedProductPage = () => {
         <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
       </Box>
       <Container
-        sx={{ mx: "auto", display: "flex", flexDirection: "row", border: 1, marginTop: "4%" }}
+        sx={{
+          mx: "auto",
+          display: "flex",
+          flexDirection: FlexDirectionMediaQuery(),
+          marginTop: "4%",
+          fontFamily: "Quicksand",
+        }}
       >
-        <Box sx={{ mx: "auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <Image
-            src={product.imageUrl}
-            height={SimpleImgMediaQuery()}
-            fit='fill'
-            duration={1000}
-            errorIcon={true}
-          />
-        </Box>
-        <Box sx={{ fontSize: SimpleFontMediaQuery(), display: "flex" }}>
-          <Box
-            sx={{
-              mx: "auto",
-              display: "inline-block",
-              marginTop: "4vh",
-              marginRight: "1vh",
-              textDecoration: "bold",
-            }}
-          >
-            <Box>Name: </Box>
-            <Box>Brand: </Box>
-            <Box>Color: </Box>
-            <Box>Speed: </Box>
-            <Box>Glide: </Box>
-            <Box>Turn: </Box>
-            <Box>Fade: </Box>
-            <Box>Price: </Box>
-            <Box>Type: </Box>
-            <Box>Weight: </Box>
+        <Box
+          sx={{
+            mx: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "1.5rem",
+            paddingBottom: "1.5rem",
+          }}
+        >
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <Image
+              src={product.imageUrl}
+              height={SimpleImgMediaQuery()}
+              fit='fill'
+              duration={1500}
+              errorIcon={true}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                border: "1px solid black",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Speed</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.speed}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Glide</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.glide}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Turn</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.turn}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Fade</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.fade}</Box>
+              </Box>
+            </Box>
           </Box>
+        </Box>
+        <Box
+          sx={{
+            fontSize: SimpleFontMediaQuery(),
+            display: "flex",
+          }}
+        >
           <Box
             sx={{
               mx: "auto",
@@ -67,17 +125,14 @@ const DetailedProductPage = () => {
               fontSize: SimpleFontMediaQuery(),
             }}
           >
-            <Box>{product.name}</Box>
-            <Box>{product.brand}</Box>
-            <Box>{product.color}</Box>
-            <Box>{product.speed}</Box>
-            <Box>{product.glide}</Box>
-            <Box>{product.turn}</Box>
-            <Box>{product.fade}</Box>
-            <Box>{product.price}</Box>
-            <Box>{product.type}</Box>
-            <Box>{product.weight}</Box>
+            <Typography variant='h5'>{product.name}</Typography>
+            <Typography variant='h6'>{product.price}Kr</Typography>
+            <Box sx={{ fontSize: "20px" }}>Brand: {product.brand}</Box>
+            <Box sx={{ fontSize: "20px" }}>Color: {product.color}</Box>
+            <Box sx={{ fontSize: "20px" }}>Type: {product.type}</Box>
+            <Box sx={{ fontSize: "20px" }}>Weight: {product.weight}</Box>
           </Box>
+
           <IconButton onClick={() => addOneToCart(product.id)}>
             <AddCircleIcon />
           </IconButton>
@@ -88,11 +143,11 @@ const DetailedProductPage = () => {
 };
 
 function SimpleImgMediaQuery() {
-  let size = 200;
+  let size = 300;
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
-    size = 150;
+    size = 250;
   }
   return size + "px";
 }
@@ -102,9 +157,19 @@ function SimpleFontMediaQuery() {
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
-    fontSize = 0.7;
+    fontSize = 1;
   }
   return fontSize + "rem";
+}
+
+function FlexDirectionMediaQuery() {
+  let flexDirection = "row";
+
+  const matches = useMediaQuery("(min-width:675px)");
+  if (!matches) {
+    flexDirection = "column";
+  }
+  return flexDirection;
 }
 
 export default DetailedProductPage;
