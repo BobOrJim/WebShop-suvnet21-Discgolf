@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, List, ListItem, Typography } from "@mui/material";
+import { Box, Button, Container, List, ListItem, Typography } from "@mui/material";
 import Image from "mui-image";
 import React from "react";
 import { useCartContext } from "../../context/CartContext";
@@ -50,8 +50,8 @@ export default function Review({ submit }: Props) {
       <List>
         {checkoutItems.map((item, index) => (
           <ListItem key={index}>
-            <Image src={item.imageUrl} width='250px' style={{ paddingRight: "1rem" }} />
-            <Box>{item.name}</Box>
+            <Image src={item.imageUrl} style={{ minWidth: "100px", paddingRight: "1rem" }} />
+            <Box style={{ minWidth: "100px", height: "100px" }}>{item.name}</Box>
             <Container sx={{ display: "flex", justifyContent: "end", gap: "0.5rem" }}>
               <Box>{item.price}kr</Box>
               <Box> x{item.amount}</Box>
@@ -69,14 +69,6 @@ export default function Review({ submit }: Props) {
         </Box>
       </List>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom></Typography>
-        </Grid>
-      </Grid>
       <Button type='submit' onClick={submit}>
         Confirm
       </Button>
