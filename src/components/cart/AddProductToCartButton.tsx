@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { IconButton } from "@mui/material";
 import { useCartContext } from "../../context/CartContext";
 import { Product } from "../product/product";
 
@@ -10,8 +11,8 @@ export default function AddProduct({ item }: AddProductToCartButtonProps) {
   const { addOneToCart } = useCartContext();
 
   return (
-    <Button variant='text' color='inherit' onClick={() => addOneToCart(item.id)}>
-      <span>+</span>
-    </Button>
+    <IconButton onClick={() => addOneToCart(item.id)}>
+      <AddCircleIcon />
+    </IconButton>
   );
 }
