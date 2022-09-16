@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { useCartContext } from "../context/CartContext";
 import { useProductContext } from "../context/ProductContext";
 import { formatCurrency } from "../utils/formatCurrency";
@@ -9,11 +9,11 @@ export function ShoppingCart() {
   const { getAllProducts } = useProductContext();
 
   return (
-    <div>
+    <Box>
       {cartItems.map((item) => (
         <CartItem key={item.id} {...item} />
       ))}
-      <div
+      <Box
         style={{
           fontSize: SimpleFontMediaQuery(),
           display: "flex",
@@ -28,8 +28,8 @@ export function ShoppingCart() {
             return total + (item?.price || 0) * cartItem.quantity;
           }, 0),
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
