@@ -14,9 +14,10 @@ import { CSSProperties } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 import AddressForm from "./AddressForm";
+import ConfirmCart from "./ConfirmCart";
 import Review from "./Review";
 
-const steps = ["Shipping address", "Review your order"];
+const steps = ["Confirm product", "Shipping address", "Review your order"];
 const theme = createTheme();
 
 export default function Checkout() {
@@ -26,7 +27,7 @@ export default function Checkout() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-    if (activeStep === 1) {
+    if (activeStep === 2) {
       clearCart();
     }
   };
@@ -85,8 +86,9 @@ export default function Checkout() {
                         </Button>
                       )}
                     </Box>
-                    {activeStep === 0 && <AddressForm submit={handleNext} />}
-                    {activeStep === 1 && <Review submit={handleNext} />}
+                    {activeStep === 0 && <ConfirmCart submit={handleNext} />}
+                    {activeStep === 1 && <AddressForm submit={handleNext} />}
+                    {activeStep === 2 && <Review submit={handleNext} />}
                   </React.Fragment>
                 )}
               </React.Fragment>
