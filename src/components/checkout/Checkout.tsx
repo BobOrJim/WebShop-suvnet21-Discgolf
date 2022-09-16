@@ -1,3 +1,4 @@
+import { ArrowBack } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -9,19 +10,19 @@ import Stepper from "@mui/material/Stepper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { CSSProperties } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
 import AddressForm from "./AddressForm";
 import Review from "./Review";
-import { CSSProperties } from "react";
-import { useCartContext } from "../../context/CartContext";
 
 const steps = ["Shipping address", "Review your order"];
-
 const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const { clearCart } = useCartContext();
+  const { cartQuantity, clearCart } = useCartContext();
+  const nav = useNavigate();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -43,37 +44,51 @@ export default function Checkout() {
           <Typography component='h1' variant='h4' align='center'>
             Checkout
           </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
+          {cartQuantity == 0 && (
+            <Container>
+              <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                Your cart is empty! Why did you go here?
+              </Box>
+              <Box>
+                <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
+              </Box>
+            </Container>
+          )}
+          {cartQuantity > 0 && (
+            <Box>
+              <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
               <React.Fragment>
-                <Typography variant='h5' gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <NavLink style={linkStyle} to='/'>
-                  <Button>Back home</Button>
-                </NavLink>
+                {activeStep === steps.length ? (
+                  <React.Fragment>
+                    <Typography variant='h5' gutterBottom>
+                      Thank you for your order.
+                    </Typography>
+                    <NavLink style={linkStyle} to='/'>
+                      <Button>Back home</Button>
+                    </NavLink>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                      {activeStep !== 0 && (
+                        <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                          Back
+                        </Button>
+                      )}
+                    </Box>
+                    {activeStep === 0 && <AddressForm submit={handleNext} />}
+                    {activeStep === 1 && <Review submit={handleNext} />}
+                  </React.Fragment>
+                )}
               </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Back
-                    </Button>
-                  )}
-                </Box>
-                {activeStep === 0 && <AddressForm submit={handleNext} />}
-                {activeStep === 1 && <Review submit={handleNext} />}
-              </React.Fragment>
-            )}
-          </React.Fragment>
+            </Box>
+          )}
         </Paper>
       </Container>
     </ThemeProvider>

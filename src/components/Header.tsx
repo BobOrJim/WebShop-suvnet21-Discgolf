@@ -1,6 +1,5 @@
 import MenuComp from "./MenuComp";
 
-
 const Header = () => {
   return (
     <>
@@ -8,4 +7,5 @@ const Header = () => {
   </>
   );
 };
+
 export default Header;
