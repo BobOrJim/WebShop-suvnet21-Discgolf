@@ -1,6 +1,6 @@
 import { ArrowBack } from "@mui/icons-material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Box, Button, Container, IconButton, useMediaQuery } from "@mui/material";
+import { Box, Button, Container, IconButton, Typography, useMediaQuery } from "@mui/material";
 import Image from "mui-image";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
@@ -28,8 +28,8 @@ const DetailedProductPage = () => {
           mx: "auto",
           display: "flex",
           flexDirection: FlexDirectionMediaQuery(),
-          border: 1,
           marginTop: "4%",
+          fontFamily: "Quicksand",
         }}
       >
         <Box
@@ -42,13 +42,71 @@ const DetailedProductPage = () => {
             paddingBottom: "1.5rem",
           }}
         >
-          <Image
-            src={product.imageUrl}
-            height={SimpleImgMediaQuery()}
-            fit='fill'
-            duration={1000}
-            errorIcon={true}
-          />
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <Image
+              src={product.imageUrl}
+              height={SimpleImgMediaQuery()}
+              fit='fill'
+              duration={1500}
+              errorIcon={true}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                border: "1px solid black",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Speed</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.speed}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Glide</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.glide}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                  borderRight: "1px solid black",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Turn</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.turn}</Box>
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "25%",
+                }}
+              >
+                <Box sx={{ background: "lightgray" }}>Fade</Box>
+                <Box sx={{ textAlign: "center", fontSize: "25px" }}>{product.fade}</Box>
+              </Box>
+            </Box>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -67,17 +125,14 @@ const DetailedProductPage = () => {
               fontSize: SimpleFontMediaQuery(),
             }}
           >
-            <Box>Name: {product.name}</Box>
-            <Box>Brand: {product.brand}</Box>
-            <Box>Color: {product.color}</Box>
-            <Box>Speed: {product.speed}</Box>
-            <Box>Glide: {product.glide}</Box>
-            <Box>Turn: {product.turn}</Box>
-            <Box>Fade: {product.fade}</Box>
-            <Box>Price: {product.price}</Box>
-            <Box>Type: {product.type}</Box>
-            <Box>Weight: {product.weight}</Box>
+            <Typography variant='h5'>{product.name}</Typography>
+            <Typography variant='h6'>{product.price}Kr</Typography>
+            <Box sx={{ fontSize: "20px" }}>Brand: {product.brand}</Box>
+            <Box sx={{ fontSize: "20px" }}>Color: {product.color}</Box>
+            <Box sx={{ fontSize: "20px" }}>Type: {product.type}</Box>
+            <Box sx={{ fontSize: "20px" }}>Weight: {product.weight}</Box>
           </Box>
+
           <IconButton onClick={() => addOneToCart(product.id)}>
             <AddCircleIcon />
           </IconButton>
@@ -88,11 +143,11 @@ const DetailedProductPage = () => {
 };
 
 function SimpleImgMediaQuery() {
-  let size = 200;
+  let size = 300;
 
   const matches = useMediaQuery("(min-width:675px)");
   if (!matches) {
-    size = 150;
+    size = 250;
   }
   return size + "px";
 }

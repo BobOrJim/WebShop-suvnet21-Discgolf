@@ -39,7 +39,7 @@ export default function ProductCard({
   return (
     <div style={tmpDivStyle}>
       <div style={detailsStyle}>
-        <NavLink to={"/product/" + id.toString()}>
+        <NavLink style={linkUnderline} to={"/product/" + id.toString()}>
           <div style={productNameDiv}> {name}</div>
           <div style={productPriceDiv}>{formatCurrency(price)}</div>
           <div style={productImageDiv}>
@@ -83,6 +83,7 @@ const productNameDiv: CSSProperties = {
   margin: "auto",
   display: "flex",
   justifyContent: "center",
+  textDecoration: "none",
 };
 
 const productPriceDiv: CSSProperties = {
@@ -102,4 +103,10 @@ const productImageDiv: CSSProperties = {
 const detailsStyle: CSSProperties = {
   display: "flex",
   justifyContent: "center",
+};
+
+const linkUnderline: CSSProperties = {
+  textDecoration: "none",
+  color: "#1976d2",
+  fontFamily: "Quicksand",
 };
