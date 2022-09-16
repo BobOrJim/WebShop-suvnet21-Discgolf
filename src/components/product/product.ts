@@ -14,5 +14,3 @@ export type Product = {
 };
 
 export type ProductCreate = Omit<Product, "id">;
-
-//get back up

@@ -13,7 +13,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../components/product/product";
 import { useProductContext } from "../context/ProductContext";
-//Sök här efter goa ikoner https://mui.com/material-ui/material-icons/
 
 const columnOrderDictionary: { [columnName: string]: boolean } = {};
 columnOrderDictionary["id"] = false;
@@ -43,7 +42,6 @@ const AdminPage = () => {
     setPage(page);
   };
 
-  //Tricket att få denna att fungera, är att från docsen lista ut att copy/pasta funktionens typ, istället för metodsignaturens typ.
   const handleChangeRowsPerPage: React.ChangeEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   > = (event) => {
@@ -65,7 +63,6 @@ const AdminPage = () => {
   }
 
   function handleSortClick(columnName: string) {
-    //Inte optimal felhantering här. Stoppar in i backloggen.
     const property = columnName as keyof Product;
     const sorted = [...rowData].sort((product1, product2) =>
       compareTwoProductsUsingTProp(product1, product2, property),

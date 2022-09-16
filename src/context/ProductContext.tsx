@@ -1,7 +1,3 @@
-//discRepo wrappar disc
-//discContext wrappar discRepo
-//övrigt program använder sedan enbart discContext
-//Framtida notering: Om ett api används, så skall context wrappa apiet och vara den enda som skickar requests
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Product, ProductCreate } from "../components/product/product";

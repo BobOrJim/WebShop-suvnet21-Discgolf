@@ -26,7 +26,6 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-  //<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
   return (
     <>
       <AppBar position='fixed'>
@@ -98,7 +97,6 @@ const Header = () => {
             </Box>
             {/* HAMBURGER MENU MOBILE END */}
 
-            {/* sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               {/* IKON MOBILE */}
               <DonutLargeIcon sx={{ display: { xs: "block", md: "none" }, mr: 1 }} />
@@ -132,8 +130,6 @@ const Header = () => {
               ))}
             </Box>
             {/* NAVIGATION DESKTOP END */}
-
-            {/* Cart Stuff*/}
             <Box sx={{ flexGrow: 0 }}>
               <TempDrawer />
             </Box>
