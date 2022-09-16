@@ -22,7 +22,6 @@ type ProductProps = {
 
 export default function ProductCard({ id, name, imageUrl, price }: ProductProps) {
   const { addOneToCart } = useCartContext();
-  //const quantity = getItemQuantity(id);
 
   return (
     <div style={tmpDivStyle}>
