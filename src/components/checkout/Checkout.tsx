@@ -56,6 +56,9 @@ export default function Checkout() {
           )}
           {cartQuantity > 0 && (
             <Box>
+              <Box>
+                <Button onClick={() => nav("/")}>{<ArrowBack />}</Button>
+              </Box>
               <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
                 {steps.map((label) => (
                   <Step key={label}>
@@ -78,7 +81,7 @@ export default function Checkout() {
                     <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                       {activeStep !== 0 && (
                         <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                          Back
+                          Back to shipping
                         </Button>
                       )}
                     </Box>
