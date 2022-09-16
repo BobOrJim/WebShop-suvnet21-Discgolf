@@ -20,19 +20,7 @@ type ProductProps = {
   type: string;
 };
 
-export default function ProductCard({
-  id,
-  name,
-  //brand,
-  //speed,
-  //glide,
-  //turn,
-  //fade,
-  //weight,
-  //color,
-  imageUrl,
-  price,
-}: ProductProps) {
+export default function ProductCard({ id, name, imageUrl, price }: ProductProps) {
   const { addOneToCart } = useCartContext();
   //const quantity = getItemQuantity(id);
 

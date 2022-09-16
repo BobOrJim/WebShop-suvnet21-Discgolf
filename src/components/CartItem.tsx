@@ -33,15 +33,3 @@ export function CartItem({ id, quantity }: CartItemProps) {
     </Stack>
   );
 }
-
-/*
-function SimpleFontMediaQuery() {
-  let fontSize = 1;
-
-  const matches = useMediaQuery("(min-width:675px)");
-  if (!matches) {
-    fontSize = 0.7;
-  }
-  return fontSize + "rem";
-}
-*/

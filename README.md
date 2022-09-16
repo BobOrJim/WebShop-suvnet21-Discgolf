@@ -1,5 +1,9 @@
 ## Inlämning 4- WebShop-suvnet21-Discgolf
 
+### Team members:
+
+Jimmy Nordin, Lucas Benjaminson, Frans Billqvist, Daniel Toresson
+
 ### About the project
 
 This is a webshop that sells discs for disc golf. We have used React to build all components and render them on our website.
