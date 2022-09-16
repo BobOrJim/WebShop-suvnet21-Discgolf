@@ -3,8 +3,8 @@ import MenuComp from "./MenuComp";
 const Header = () => {
   return (
     <>
-    <MenuComp/>
-  </>
+      <MenuComp />
+    </>
   );
 };
 

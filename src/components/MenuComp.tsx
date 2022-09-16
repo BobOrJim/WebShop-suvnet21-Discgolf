@@ -1,16 +1,16 @@
-import * as React from 'react'
-import { AppBar, Container, Toolbar, Box, IconButton, MenuItem, Button, Menu} from '@mui/material';
-import { NavLink, Link, Outlet } from 'react-router-dom';
-import TempDrawer from './Drawer';
 import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar } from "@mui/material";
+import * as React from "react";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { CSSProperties } from "styled-components";
-import { useCartContext } from '../context/CartContext';
+import { useCartContext } from "../context/CartContext";
+import TempDrawer from "./Drawer";
 
 let pages = ["admin", "checkout"];
 
-const MenuComp = () => {
-  const {cartQuantity} = useCartContext();
+export default function MenuComp() {
+  const { cartQuantity } = useCartContext();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -20,15 +20,15 @@ const MenuComp = () => {
     setAnchorElNav(null);
   };
 
-  if(cartQuantity === 0) {
+  if (cartQuantity === 0) {
     pages = ["admin"];
   } else {
     pages = ["admin", "checkout"];
   }
-  
+
   return (
     <>
-    <AppBar position='fixed'>
+      <AppBar position='fixed'>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
             <DonutLargeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 3 }} />
@@ -120,29 +120,26 @@ const MenuComp = () => {
         </Container>
       </AppBar>
       <Outlet />
-      </>
-  )
+    </>
+  );
 }
 
-export default MenuComp
-
 const styleLink: CSSProperties = {
-    color: "white",
-    fontWeight: 700,
-    letterSpacing: ".3rem",
-    textDecoration: "none",
-    fontFamily: "sans-serif",
-    fontSize: "1rem",
-    alignItems: "center",
-  };
-  
-  const styleLinkHamburger: CSSProperties = {
-    color: "blue",
-    fontWeight: 700,
-    letterSpacing: ".3rem",
-    textDecoration: "none",
-    fontFamily: "sans-serif",
-    fontSize: "1rem",
-    alignItems: "center",
-  };
-  
+  color: "white",
+  fontWeight: 700,
+  letterSpacing: ".3rem",
+  textDecoration: "none",
+  fontFamily: "sans-serif",
+  fontSize: "1rem",
+  alignItems: "center",
+};
+
+const styleLinkHamburger: CSSProperties = {
+  color: "blue",
+  fontWeight: 700,
+  letterSpacing: ".3rem",
+  textDecoration: "none",
+  fontFamily: "sans-serif",
+  fontSize: "1rem",
+  alignItems: "center",
+};
