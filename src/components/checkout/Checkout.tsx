@@ -82,9 +82,9 @@ export default function Checkout() {
                 ) : (
                   <React.Fragment>
                     <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                      {activeStep === 2 && (
+                      {(activeStep === 1 || activeStep === 2) && (
                         <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                          Back to shipping
+                          {activeStep === 1 ? "Back to cart" : "Back to shipping"}
                         </Button>
                       )}
                     </Box>

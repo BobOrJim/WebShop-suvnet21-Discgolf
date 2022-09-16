@@ -50,8 +50,8 @@ export default function Review({ submit }: Props) {
       <List>
         {checkoutItems.map((item, index) => (
           <ListItem key={index}>
-            <Image src={item.imageUrl} width='250px' style={{ paddingRight: "1rem" }} />
-            <Box>{item.name}</Box>
+            <Image src={item.imageUrl} style={{ minWidth: "100px", paddingRight: "1rem" }} />
+            <Box style={{ minWidth: "100px", height: "100px" }}>{item.name}</Box>
             <Container sx={{ display: "flex", justifyContent: "end", gap: "0.5rem" }}>
               <Box>{item.price}kr</Box>
               <Box> x{item.amount}</Box>
