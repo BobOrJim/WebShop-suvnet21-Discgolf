@@ -1,6 +1,6 @@
 import { Box, Button, Container, FormControl, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useProductContext } from "../../context/ProductContext";
@@ -11,15 +11,15 @@ type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 const ProductSchema = Yup.object().shape<ProductRecord>({
   name: Yup.string().min(3).required("Required"),
   brand: Yup.string().min(3).required("Required"),
-  speed: Yup.number().min(1).max(2).required("Required"),
-  glide: Yup.number().min(1).max(2).required("Required"),
-  turn: Yup.number().min(1).max(2).required("Required"),
-  fade: Yup.number().min(1).max(2).required("Required"),
-  weight: Yup.number().min(3).max(3).required("Required"),
+  speed: Yup.number().min(1).max(100).required("Required"),
+  glide: Yup.number().min(1).max(100).required("Required"),
+  turn: Yup.number().min(1).max(100).required("Required"),
+  fade: Yup.number().min(1).max(100).required("Required"),
+  weight: Yup.number().min(1).max(100).required("Required"),
   color: Yup.string().min(3).required("Required"),
-  imageUrl: Yup.string().min(8).required("Required"),
+  imageUrl: Yup.string().min(6).required("Required"),
   price: Yup.number().min(1).required("Required"),
-  type: Yup.string().min(3).required("Required"),
+  type: Yup.string().min(1).required("Required"),
 });
 
 interface ProductCardProps {
@@ -28,6 +28,8 @@ interface ProductCardProps {
 
 export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.Element => {
   const { replaceProduct, addProduct } = useProductContext();
+  const [hasSubmit, setHasSubmit] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const formik = useFormik<ProductCreate>({
     initialValues: props.product || {
@@ -46,24 +48,31 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
     validateOnChange: true,
     validationSchema: ProductSchema,
     onSubmit: (values: ProductCreate) => {
+      //console.log("trying to submit");
       if (props.product.id !== undefined) {
-        console.log("replace product");
         const editedProduct: Product = {
           id: props.product.id,
           ...values,
         };
         replaceProduct(editedProduct);
       } else {
-        console.log("add product");
         addProduct(values);
       }
+      setHasSubmit(false);
       navigate("/admin");
     },
   });
 
   return (
     <Container>
-      <form onSubmit={formik.handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setHasSubmit(true);
+          formik.handleSubmit();
+        }}
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <input type='hidden' name='id' value={props.product ? props.product.id : ""} />
 
         <FormControl>
@@ -72,10 +81,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='name'
             name='name'
             label='Name'
-            value={formik.values.name}
+            value={formik.values.name || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.name)}
-            helperText={formik.errors.name}
+            error={Boolean(hasSubmit || formik.values.name != null ? formik.errors.name : false)}
+            helperText={hasSubmit || formik.values.name != null ? formik.errors.name : ""}
           />
         </FormControl>
 
@@ -85,10 +94,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='brand'
             name='brand'
             label='Brand'
-            value={formik.values.brand}
+            value={formik.values.brand || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.brand)}
-            helperText={formik.errors.brand}
+            error={Boolean(hasSubmit || formik.values.brand != null ? formik.errors.brand : false)}
+            helperText={hasSubmit || formik.values.brand != null ? formik.errors.brand : ""}
           />
         </FormControl>
 
@@ -98,10 +107,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='speed'
             name='speed'
             label='Speed'
-            value={formik.values.speed}
+            value={formik.values.speed || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.speed)}
-            helperText={formik.errors.speed}
+            error={Boolean(hasSubmit || formik.values.speed != null ? formik.errors.speed : false)}
+            helperText={hasSubmit || formik.values.speed != null ? formik.errors.speed : ""}
           />
         </FormControl>
 
@@ -111,10 +120,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='glide'
             name='glide'
             label='Glide'
-            value={formik.values.glide}
+            value={formik.values.glide || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.glide)}
-            helperText={formik.errors.glide}
+            error={Boolean(hasSubmit || formik.values.glide ? formik.errors.glide : false)}
+            helperText={hasSubmit || formik.values.glide ? formik.errors.glide : ""}
           />
         </FormControl>
 
@@ -124,10 +133,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='turn'
             name='turn'
             label='Turn'
-            value={formik.values.turn}
+            value={formik.values.turn || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.turn)}
-            helperText={formik.errors.turn}
+            error={Boolean(hasSubmit || formik.values.turn ? formik.errors.turn : false)}
+            helperText={hasSubmit || formik.values.turn ? formik.errors.turn : ""}
           />
         </FormControl>
 
@@ -137,10 +146,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='fade'
             name='fade'
             label='Fade'
-            value={formik.values.fade}
+            value={formik.values.fade || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.fade)}
-            helperText={formik.errors.fade}
+            error={Boolean(hasSubmit || formik.values.fade ? formik.errors.fade : false)}
+            helperText={hasSubmit || formik.values.fade ? formik.errors.fade : ""}
           />
         </FormControl>
 
@@ -150,10 +159,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='weight'
             name='weight'
             label='Weight'
-            value={formik.values.weight}
+            value={formik.values.weight || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.weight)}
-            helperText={formik.errors.weight}
+            error={Boolean(hasSubmit || formik.values.weight ? formik.errors.weight : false)}
+            helperText={hasSubmit || formik.values.weight ? formik.errors.weight : ""}
           />
         </FormControl>
 
@@ -163,10 +172,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='color'
             name='color'
             label='Color'
-            value={formik.values.color}
+            value={formik.values.color || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.color)}
-            helperText={formik.errors.color}
+            error={Boolean(hasSubmit || formik.values.color ? formik.errors.color : false)}
+            helperText={hasSubmit || formik.values.color ? formik.errors.color : ""}
           />
         </FormControl>
 
@@ -176,10 +185,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='imageUrl'
             name='imageUrl'
             label='Image Url'
-            value={formik.values.imageUrl}
+            value={formik.values.imageUrl || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.imageUrl)}
-            helperText={formik.errors.imageUrl}
+            error={Boolean(hasSubmit || formik.values.imageUrl ? formik.errors.imageUrl : false)}
+            helperText={hasSubmit || formik.values.imageUrl ? formik.errors.imageUrl : ""}
           />
         </FormControl>
 
@@ -189,10 +198,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='price'
             name='price'
             label='Price'
-            value={formik.values.price}
+            value={formik.values.price || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.price)}
-            helperText={formik.errors.price}
+            error={Boolean(hasSubmit || formik.values.price ? formik.errors.price : false)}
+            helperText={hasSubmit || formik.values.price ? formik.errors.price : ""}
           />
         </FormControl>
 
@@ -202,10 +211,10 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
             id='type'
             name='type'
             label='Type'
-            value={formik.values.type}
+            value={formik.values.type || ""}
             onChange={formik.handleChange}
-            error={Boolean(formik.errors.type)}
-            helperText={formik.errors.type}
+            error={Boolean(hasSubmit || formik.values.type ? formik.errors.type : false)}
+            helperText={hasSubmit || formik.values.type ? formik.errors.type : ""}
           />
         </FormControl>
 

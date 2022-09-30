@@ -1,11 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Product, ProductCreate } from "../components/product/product";
-import {
-  getProductsFromLocalStorage,
-  saveProductsToLocalStorage,
-  seedIfEmpty,
-} from "../data/productRepo";
+import { getProductsFromLocalStorage, saveProductsToLocalStorage } from "../data/productRepo";
 
 interface ProductProviderProps {
   children: ReactNode;
@@ -16,7 +12,6 @@ interface IProductContext {
   getAllProducts: () => Product[];
   getProductById: (id: string) => Product;
   removeProduct: (id: string) => void;
-  saveToRepo: () => void;
   replaceProduct: (product: Product) => void;
 }
 
@@ -28,7 +23,7 @@ function ProductContextProvider({ children }: ProductProviderProps) {
   const [products, setProducts] = useState<Product[]>(getProductsFromLocalStorage());
 
   useEffect(() => {
-    seedIfEmpty();
+    //seedIfEmpty();
   }, []);
 
   function getAllProducts(): Product[] {
@@ -48,20 +43,21 @@ function ProductContextProvider({ children }: ProductProviderProps) {
       id: uuidv4(),
       ...product,
     };
+    console.log("trying to save a product");
+    saveProductsToLocalStorage([...products, newProduct]);
     setProducts([...products, newProduct]);
   }
 
   function removeProduct(id: string) {
-    setProducts((currItems) => currItems.filter((item) => item.id !== id));
-  }
-
-  function saveToRepo() {
-    saveProductsToLocalStorage(products);
+    const newProducts = products.filter((item) => item.id !== id);
+    setProducts(newProducts);
+    saveProductsToLocalStorage(newProducts);
   }
 
   function replaceProduct(product: Product) {
     const newProducts = products.map((p) => (p.id === product.id ? product : p));
     setProducts(newProducts);
+    saveProductsToLocalStorage(newProducts);
   }
 
   return (
@@ -71,7 +67,6 @@ function ProductContextProvider({ children }: ProductProviderProps) {
         getAllProducts,
         getProductById,
         removeProduct,
-        saveToRepo,
         replaceProduct,
       }}
     >
