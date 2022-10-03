@@ -1,6 +1,5 @@
 import { Product } from "../components/product/product";
 import seedData from "./items.json";
-//import AsyncLocalStorage from "@createnextapp/async-local-storage";
 
 export const saveProductsToLocalStorage = (products: Product[]) => {
   localStorage.setItem("products", JSON.stringify(products));
@@ -9,7 +8,7 @@ export const saveProductsToLocalStorage = (products: Product[]) => {
 export const getProductsFromLocalStorage = (): Product[] => {
   if (localStorage.getItem("products") == null || localStorage.getItem("products") == undefined) {
     console.log(
-      "ops Local Storage is empty, the user or David has activly removed it, lets seed before we show the start screen",
+      "Oops! Local Storage is empty, the user or David has actively removed it, lets seed before we show the start screen",
     );
     seedIfEmpty();
   }
