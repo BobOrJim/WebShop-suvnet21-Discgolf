@@ -9,13 +9,13 @@ import { Product, ProductCreate } from "./product";
 type ProductRecord = Record<keyof ProductCreate, Yup.AnySchema>;
 
 const ProductSchema = Yup.object().shape<ProductRecord>({
-  name: Yup.string().min(3).required("Required"),
-  brand: Yup.string().min(3).required("Required"),
-  speed: Yup.number().min(1).max(100).required("Required"),
-  glide: Yup.number().min(1).max(100).required("Required"),
-  turn: Yup.number().min(1).max(100).required("Required"),
-  fade: Yup.number().min(1).max(100).required("Required"),
-  weight: Yup.number().min(1).max(100).required("Required"),
+  name: Yup.string().min(2).required("Required"),
+  brand: Yup.string().min(2).required("Required"),
+  speed: Yup.number().min(1).max(14).required("Required"),
+  glide: Yup.number().min(1).max(7).required("Required"),
+  turn: Yup.number().min(-5).max(1).required("Required"),
+  fade: Yup.number().min(0).max(5).required("Required"),
+  weight: Yup.number().min(1).max(200).required("Required"),
   color: Yup.string().min(3).required("Required"),
   imageUrl: Yup.string().min(6).required("Required"),
   price: Yup.number().min(1).required("Required"),
@@ -48,7 +48,6 @@ export const ProductForm: FC<ProductCardProps> = (props: ProductCardProps): JSX.
     validateOnChange: true,
     validationSchema: ProductSchema,
     onSubmit: (values: ProductCreate) => {
-      //console.log("trying to submit");
       if (props.product.id !== undefined) {
         const editedProduct: Product = {
           id: props.product.id,
