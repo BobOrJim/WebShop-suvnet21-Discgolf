@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Product, ProductCreate } from "../components/product/product";
 import { getProductsFromLocalStorage, saveProductsToLocalStorage } from "../data/productRepo";
@@ -21,9 +21,6 @@ export const useProductContext = (): IProductContext => useContext(ProductContex
 
 function ProductContextProvider({ children }: ProductProviderProps) {
   const [products, setProducts] = useState<Product[]>(getProductsFromLocalStorage());
-
-  useEffect(() => {
-  }, []);
 
   function getAllProducts(): Product[] {
     return products;
