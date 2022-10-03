@@ -1,6 +1,6 @@
 ## Inlämning 4- WebShop-suvnet21-Discgolf
 
-https://deploy-preview-168--statuesque-tanuki-d9e115.netlify.app/
+https://statuesque-tanuki-d9e115.netlify.app/
 
 ### Team members:
 
