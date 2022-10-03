@@ -64,9 +64,7 @@ export default function AddressForm({ submit }: Props) {
     },
     validationSchema: formSchema,
     onSubmit: () => {
-      //console.log("In second onSublit är hasSubmit=" + hasSubmit);
       setHasSubmit(true);
-      //console.log(hasSubmit);
       submit();
       setHasSubmit(false);
     },
@@ -81,7 +79,6 @@ export default function AddressForm({ submit }: Props) {
         component='form'
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
-          //console.log("In first onSublit är hasSubmit=" + hasSubmit);
           setHasSubmit(true);
           formik.handleSubmit();
         }}
