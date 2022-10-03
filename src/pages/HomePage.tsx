@@ -5,6 +5,7 @@ import { useProductContext } from "../context/ProductContext";
 
 const Home = () => {
   const { getAllProducts } = useProductContext();
+  const allProducts = getAllProducts();
   return (
     <Box sx={{ width: "100%", marginTop: "5rem" }}>
       <Grid2
@@ -14,7 +15,7 @@ const Home = () => {
         columnSpacing={{ xs: 4, md: 2 }}
         sx={{ display: "flex", justifyContent: "center" }}
       >
-        {getAllProducts().map((item) => (
+        {allProducts.map((item) => (
           <Grid2 key={item.id} xs={10} md={6} lg={4}>
             <ProductCard {...item} />
           </Grid2>

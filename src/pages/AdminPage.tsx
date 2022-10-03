@@ -49,7 +49,6 @@ const AdminPage = () => {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     }
-    console.log(rowsPerPage + " " + typeof rowsPerPage);
   };
 
   function compareTwoProductsUsingTProp(a: Product, b: Product, orderBy: keyof Product) {

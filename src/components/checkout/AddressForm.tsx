@@ -51,6 +51,7 @@ const formSchema = yup.object<YupObject>({
 });
 
 export default function AddressForm({ submit }: Props) {
+  const [hasSubmit, setHasSubmit] = React.useState<boolean>(false);
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -63,7 +64,9 @@ export default function AddressForm({ submit }: Props) {
     },
     validationSchema: formSchema,
     onSubmit: () => {
+      setHasSubmit(true);
       submit();
+      setHasSubmit(false);
     },
   });
 
@@ -72,7 +75,14 @@ export default function AddressForm({ submit }: Props) {
       <Typography variant='h6' gutterBottom>
         Shipping address
       </Typography>
-      <Box component='form' onSubmit={formik.handleSubmit}>
+      <Box
+        component='form'
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          setHasSubmit(true);
+          formik.handleSubmit();
+        }}
+      >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -82,8 +92,8 @@ export default function AddressForm({ submit }: Props) {
               label='First name'
               value={formik.values.firstName}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.firstName)}
-              helperText={formik.errors.firstName}
+              error={Boolean(hasSubmit ? formik.errors.firstName : "")}
+              helperText={hasSubmit ? formik.errors.firstName : ""}
               fullWidth
               autoComplete='on'
               variant='standard'
@@ -97,8 +107,8 @@ export default function AddressForm({ submit }: Props) {
               label='Last name'
               value={formik.values.lastName}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.lastName)}
-              helperText={formik.errors.lastName}
+              error={Boolean(hasSubmit ? formik.errors.lastName : "")}
+              helperText={hasSubmit ? formik.errors.lastName : ""}
               fullWidth
               variant='standard'
             />
@@ -109,10 +119,10 @@ export default function AddressForm({ submit }: Props) {
               id='email'
               name='email'
               label='Email'
-              value={formik.values.email}
+              value={formik.values.email || ""}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.email)}
-              helperText={formik.errors.email}
+              error={Boolean(hasSubmit ? formik.errors.email : "")}
+              helperText={hasSubmit ? formik.errors.email : ""}
               fullWidth
               variant='standard'
             />
@@ -125,8 +135,8 @@ export default function AddressForm({ submit }: Props) {
               label='Address'
               value={formik.values.address}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.address)}
-              helperText={formik.errors.address}
+              error={Boolean(hasSubmit ? formik.errors.address : "")}
+              helperText={hasSubmit ? formik.errors.address : ""}
               fullWidth
               variant='standard'
             />
@@ -139,8 +149,8 @@ export default function AddressForm({ submit }: Props) {
               label='Zip code'
               value={formik.values.zipCode}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.zipCode)}
-              helperText={formik.errors.zipCode}
+              error={Boolean(hasSubmit ? formik.errors.zipCode : "")}
+              helperText={hasSubmit ? formik.errors.zipCode : ""}
               fullWidth
               variant='standard'
             />
@@ -153,8 +163,8 @@ export default function AddressForm({ submit }: Props) {
               label='City'
               value={formik.values.city}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.city)}
-              helperText={formik.errors.city}
+              error={Boolean(hasSubmit ? formik.errors.city : "")}
+              helperText={hasSubmit ? formik.errors.city : ""}
               fullWidth
               variant='standard'
             />
@@ -167,8 +177,8 @@ export default function AddressForm({ submit }: Props) {
               label='Phone number'
               value={formik.values.phone}
               onChange={formik.handleChange}
-              error={Boolean(formik.errors.phone)}
-              helperText={formik.errors.phone}
+              error={Boolean(hasSubmit ? formik.errors.phone : "")}
+              helperText={hasSubmit ? formik.errors.phone : ""}
               fullWidth
               autoComplete='on'
               variant='standard'

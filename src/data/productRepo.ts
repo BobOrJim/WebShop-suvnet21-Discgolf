@@ -6,6 +6,12 @@ export const saveProductsToLocalStorage = (products: Product[]) => {
 };
 
 export const getProductsFromLocalStorage = (): Product[] => {
+  if (localStorage.getItem("products") == null || localStorage.getItem("products") == undefined) {
+    console.log(
+      "Oops! Local Storage is empty, the user or David has actively removed it, lets seed before we show the start screen",
+    );
+    seedIfEmpty();
+  }
   const products = localStorage.getItem("products");
   if (products) {
     return JSON.parse(products);
@@ -14,8 +20,5 @@ export const getProductsFromLocalStorage = (): Product[] => {
 };
 
 export const seedIfEmpty = () => {
-  const products: Product[] = getProductsFromLocalStorage();
-  if (products.length === 0) {
-    saveProductsToLocalStorage(seedData);
-  }
+  saveProductsToLocalStorage(seedData);
 };
