@@ -23,7 +23,6 @@ function ProductContextProvider({ children }: ProductProviderProps) {
   const [products, setProducts] = useState<Product[]>(getProductsFromLocalStorage());
 
   useEffect(() => {
-    //seedIfEmpty();
   }, []);
 
   function getAllProducts(): Product[] {
