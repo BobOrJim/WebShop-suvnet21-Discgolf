@@ -42,7 +42,6 @@ function ProductContextProvider({ children }: ProductProviderProps) {
       id: uuidv4(),
       ...product,
     };
-    console.log("trying to save a product");
     saveProductsToLocalStorage([...products, newProduct]);
     setProducts([...products, newProduct]);
   }
